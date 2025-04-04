@@ -1,3 +1,5 @@
+//Contributed by Jared Scott
+
 //Imports
 const router = require('express').Router();
 const cartCon = require('../controllers/cartController');

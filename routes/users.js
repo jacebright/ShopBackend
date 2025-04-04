@@ -1,3 +1,5 @@
+//Contributed by Jared Scott
+
 //Imports
 const router = require('express').Router();
 const userCon = require('../controllers/userController');

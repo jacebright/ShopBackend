@@ -1,3 +1,5 @@
+//Contributed by Jared Scott
+
 // Imports
 const mongodb = require('../db/database'); //Change as needed for database function location
 const ObjectId = require('mongodb').ObjectId;
