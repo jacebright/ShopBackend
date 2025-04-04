@@ -53,9 +53,9 @@ const getProductById = async (req, res, next) => {
 const addProduct = async (req, res, next) => {
     try {
         const product = {
+            productId: req.body.productId,
+            productPrice: req.body.productPrice,
             productName: req.body.productName,
-            productInventory: req.body.productInventory,
-            //add any new fields if needed.
         };
         const response = await mongodb.getDatabase().db().collection(collection_name).insertOne(product);
         if (response.acknowledged) {

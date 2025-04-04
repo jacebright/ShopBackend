@@ -32,15 +32,10 @@ const getAllCarts = async (req, res, next) => {
 const getCartByUserId = async (req, res, next) => {
     try {
         const cartId = new ObjectId(req.params.id);
-        const response = await mongodb.getDatabase().db().collection(collection_name).find({_id:cartId});
-        result.toArray()
-        .then((users) => {
+        const response = await mongodb.getDatabase().db().collection(collection_name).findOne({_id:cartId});
             res.setHeader('Content-type', 'applications/json');
             res.status(200).json(users);
-        });
-        if (!result) {
             res.status(400).json(response.error || 'Some error occured while getting cart')
-        }
     } catch (error) {
         next(error)
     }
@@ -50,9 +45,9 @@ const getCartByUserId = async (req, res, next) => {
 const createCart = async (req, res, next) => {
     try {
         const cart = {
-            user: req.body.user,
             products: req.body.products, //this will be an array of values
-            createDate: req.body.createDate
+            userId: req.body.userId,
+            cartTotal: req.body.cartTotal
         };
         const response = await mongodb.getDatabase().db().collection(collection_name).insertOne(cart);
         if (response.acknowledged) {
@@ -70,9 +65,9 @@ const editCart = async (req, res, next) => {
     try {
         const cartId = new ObjectId(req.params.id);
         const cart = {
-            user: req.body.user,
             products: req.body.products, //this will be an array of values
-            createDate: req.body.createDate
+            userId: req.body.userId,
+            cartTotal: req.body.cartTotal
         };
         const response = await mongodb.getDatabase().db().collection(collection_name).replaceOne({_id:cartId}, cart);
         if (response.acknowledged) {

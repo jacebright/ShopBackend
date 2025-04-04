@@ -52,9 +52,10 @@ const createUser = async (req, res, next) => {
             lastName: req.body.lastName,
             email: req.body.email,
             favoriteColor: req.body.favoriteColor,
-            birthday: req.body.birthday,
-            accountCreated: req.body.accountCreated,
-            admin: req.body.admin 
+            accountType: req.body.accountType,
+            dateCreated: req.body.dateCreated,
+            dateUpdated: req.body.dateUpdated,
+            cartId: req.body.cartId
         };
         const response = await mongodb.getDatabase().db().collection(collection_name).insertOne(user);
         if (response.acknowledged) {
@@ -75,9 +76,10 @@ const editUser = async (req, res, next) => {
             firstName: req.body.firstName,
             lastName: req.body.lastName,
             email: req.body.email,
-            favoriteColor: req.body.favoriteColor,
-            birthday: req.body.birthday,
-            admin: req.body.admin 
+            accountType: req.body.accountType,
+            dateCreated: req.body.dateCreated,
+            dateUpdated: req.body.dateUpdated,
+            cartId: req.body.cartId
         };
         const response = await mongodb.getDatabase().db().collection(collection_name).replaceOne({_id:userId}, user);
         if (response.acknowledged) {

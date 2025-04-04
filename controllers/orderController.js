@@ -52,9 +52,9 @@ const getOrderById = async (req, res, next) => {
 const createOrder = async (req, res, next) => {
     try {
         const order = {
-            userId: req.body.userId,
             cartId: req.body.cartId,
-            createDate: req.body.createDate
+            userId: req.body.userId,
+            dateCreated: req.body.dateCreated
         };
         const response = await mongodb.getDatabase().db().collection(collection_name).insertOne(order);
         if (response.acknowledged) {
@@ -72,9 +72,9 @@ const editOrder = async (req, res, next) => {
     try {
         const orderId = new ObjectId(req.params.id);
         const order = {
-            userId: req.body.userId,
             cartId: req.body.cartId,
-            createDate: req.body.createDate
+            userId: req.body.userId,
+            dateCreated: req.body.dateCreated
         };
         const response = await mongodb.getDatabase().db().collection(collection_name).replaceOne({_id:orderId}, order);
         if (response.acknowledged) {
