@@ -6,7 +6,7 @@ const ObjectId = require('mongodb').ObjectId;
 
 
 // Database collection name values
-const collection_name = 'TBD'
+const collection_name = 'products'
 
 
 /* I assume this collection will include product names, item count and an item ID, 
