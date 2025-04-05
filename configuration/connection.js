@@ -1,33 +1,40 @@
-const Sequelize = require('sequelize');
+// configuration/db.js (or database.js)
+const { MongoClient } = require('mongodb');
 require('dotenv').config();
 
-let sequelize;
+let _db;
 
-if (process.env.DATABASE_URL) {
-  sequelize = new Sequelize(process.env.DATABASE_URL, {
-    dialect: 'postgres',
-    dialectOptions: {
-      ssl: {
-        require: true,
-        rejectUnauthorized: false, // Adjust based on your Render SSL settings
-      },
-    },
-  });
-} else {
-  sequelize = new Sequelize(
-    process.env.DB_NAME,
-    process.env.DB_USER,
-    process.env.DB_PASSWORD,
-    {
-      host: process.env.DB_HOST || 'localhost',
-      dialect: 'postgres',
-      port: process.env.DB_PORT || 5432, // Default PostgreSQL port
-      dialectOptions: {
-        decimalNumbers: true,
-      },
-      logging: false,
-    }
-  );
-}
+const connectToServer = (callback) => {
+  if (_db) {
+    console.log('MongoDB is already connected.');
+    return callback(null, _db);
+  }
 
-module.exports = sequelize;
+  const uri = process.env.MONGODB_URI;
+
+  if (!uri) {
+    return callback(new Error('MONGODB_URI is not defined in the .env file.'));
+  }
+
+  const client = new MongoClient(uri);
+
+  client.connect()
+    .then(connectedClient => {
+      _db = connectedClient.db();
+      console.log('Successfully connected to MongoDB.');
+      return callback(null, _db);
+    })
+    .catch(err => {
+      console.error('Error connecting to MongoDB:', err);
+      return callback(err);
+    });
+};
+
+const getDb = () => {
+  if (!_db) {
+    throw Error('Database not initialized');
+  }
+  return _db;
+};
+
+module.exports = { connectToServer, getDb };
