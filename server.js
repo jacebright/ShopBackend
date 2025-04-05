@@ -1,25 +1,36 @@
+// server.js
+
+// Imports
 const express = require('express');
+const cors = require('cors');
+const mongodb = require('./db/database'); // Your MongoDB connection setup
+const routes = require('./routes'); // Your API routes
+
 const app = express();
-const port = 3000;
+const PORT = process.env.PORT || 3001;
 
-// Basic route for the welcome message with a link to redirect to /api-docs
-app.get('/', (req, res) => {
-  res.send(`
-    Welcome to Shop Backend! <br>
-    <a href="/api-docs">Go to API Docs</a>
-  `);
+// Middleware
+app.use(cors()); // Enable Cross-Origin Resource Sharing
+app.use(express.json()); // Parse JSON request bodies
+app.use(express.urlencoded({ extended: true })); // Parse URL-encoded request bodies
+
+// API Routes
+app.use(routes);
+
+// Error handling middleware (optional, customize as needed)
+app.use((err, req, res, next) => {
+  console.error(err.stack);
+  res.status(500).send('Something went wrong!');
 });
 
-// Redirect to /api-docs (Swagger)
-app.get('/api-docs', (req, res) => {
-  const swaggerUrl = process.env.SWAGGER_URL || 'http://localhost:3000/api-docs'; // Default to local if SWAGGER_URL is not set
-  res.redirect(swaggerUrl);
-});
-
-// **My Contribution: Basic server setup with routes for welcome message and API redirect**
-// - Pablo Zabaleta
-
-// Start the server
-app.listen(port, () => {
-  console.log(`Server running at http://localhost:${port}`);
+// Connect to MongoDB and start the server
+mongodb.connect((err) => {
+  if (err) {
+    console.error('Failed to connect to MongoDB:', err);
+    process.exit(1); // Exit the process if connection fails
+  } else {
+    app.listen(PORT, () => {
+      console.log(`Server listening on port ${PORT}! Connected to MongoDB.`);
+    });
+  }
 });
