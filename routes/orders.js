@@ -3,7 +3,7 @@
 //Imports
 const router = require('express').Router();
 const orderCon = require('../controllers/orderController');
-order
+// order
 //GET all Orders
 router.get('/', orderCon.getAllOrders);
 /* This route should be protected for admins only */
