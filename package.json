@@ -16,7 +16,9 @@
   "main": "server.js",
   "scripts": {
     "start": "node server.js",
-    "dev": "nodemon server.js"
+    "dev": "nodemon server.js",
+    "build": "npm install && npm run swagger",
+    "swagger": "node swagger/swagger.js"
   },
   "dependencies": {
     "body-parser": "^1.20.3",
