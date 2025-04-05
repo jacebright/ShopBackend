@@ -18,9 +18,9 @@ const connect = (callback) => {
 
   const client = new MongoClient(uri);
 
-  client.connect()
+  client.connect(uri)
     .then(connectedClient => {
-      _db = connectedClient.db();
+      _db = connectedClient;
       console.log('Successfully connected to MongoDB.');
       return callback(null, _db);
     })
