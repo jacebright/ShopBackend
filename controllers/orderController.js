@@ -6,7 +6,7 @@ const ObjectId = require('mongodb').ObjectId;
 
 
 // Database collection name values
-const collection_name = 'TBD'
+const collection_name = 'orders'
 
 
 //GET all orders
