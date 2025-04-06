@@ -35,16 +35,14 @@ const getInventory = async (req, res, next) => {
 const getProductById = async (req, res, next) => {
     try {
         const productId = new ObjectId(req.params.id);
-        const response = await mongodb.getDatabase().db().collection(collection_name).find({_id:productId});
-        response.toArray()
-        .then((users) => {
+        const response = await mongodb.getDatabase().db().collection(collection_name).findOne({_id:productId});
             res.setHeader('Content-type', 'applications/json');
-            res.status(200).json(users);
-        });
-        if (!result) {
-            res.status(400).json(response.error || 'Some error occured while getting product')
-        }
+            res.status(200).json(response);
+        // if (!response) {
+        //     res.status(400).json(response.error || 'Some error occured while getting product')
+        // }
     } catch (error) {
+        res.status(400).json(response.error || 'Some error occured while getting product')
         next(error)
     }
 };

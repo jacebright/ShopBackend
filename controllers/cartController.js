@@ -34,9 +34,9 @@ const getCartByUserId = async (req, res, next) => {
         const cartId = new ObjectId(req.params.id);
         const response = await mongodb.getDatabase().db().collection(collection_name).findOne({_id:cartId});
             res.setHeader('Content-type', 'applications/json');
-            res.status(200).json(users);
-            res.status(400).json(response.error || 'Some error occured while getting cart')
+            res.status(200).json(response);
     } catch (error) {
+        res.status(400).json(response.error || 'Some error occured while getting cart')
         next(error)
     }
 };

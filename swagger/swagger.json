@@ -44,28 +44,36 @@
               "type": "object",
               "properties": {
                 "firstName": {
-                  "example": "any"
+                  "type": "string",
+                  "example": "John"
                 },
                 "lastName": {
-                  "example": "any"
+                  "type": "string",
+                  "example": "Deere"
                 },
                 "email": {
-                  "example": "any"
+                  "type": "email",
+                  "example": "john@deere.tractor"
                 },
                 "favoriteColor": {
-                  "example": "any"
+                  "type": "string",
+                  "example": "Green"
                 },
                 "accountType": {
-                  "example": "any"
+                  "type": "string",
+                  "enum": ["Customer", "Employee"],
+                  "example": "Customer"
                 },
                 "dateCreated": {
-                  "example": "any"
+
+                  "example": "04/05/2024"
                 },
                 "dateUpdated": {
-                  "example": "any"
+                  "example": "04/05/2025"
                 },
                 "cartId": {
-                  "example": "any"
+                  "type": "integer",
+                  "example": 34
                 }
               }
             }
@@ -135,25 +143,37 @@
               "type": "object",
               "properties": {
                 "firstName": {
-                  "example": "any"
+                  "type": "string",
+                  "example": "John"
                 },
                 "lastName": {
-                  "example": "any"
+                  "type": "string",
+                  "example": "Deere"
                 },
                 "email": {
-                  "example": "any"
+                  "type": "email",
+                  "example": "john@deere.tractor"
+                },
+                "favoriteColor": {
+                  "type": "string",
+                  "example": "Green"
                 },
                 "accountType": {
-                  "example": "any"
+                  "type": "string",
+                  "enum": ["Customer", "Employee"],
+                  "example": "Customer"
                 },
                 "dateCreated": {
-                  "example": "any"
+
+                  "example": "04/05/2024"
                 },
                 "dateUpdated": {
-                  "example": "any"
+                  "example": "04/05/2025"
                 },
                 "cartId": {
-                  "example": "any"
+                  "type": "integer",
+                  "format": "int64",
+                  "example": "34"
                 }
               }
             }
@@ -234,13 +254,17 @@
               "type": "object",
               "properties": {
                 "productId": {
-                  "example": "any"
+                  "type": "integer",
+                  "format": "int64",
+                  "example": "987"
                 },
                 "productPrice": {
-                  "example": "any"
+                  "type": "float",
+                  "example": "199.99"
                 },
                 "productName": {
-                  "example": "any"
+                  "type": "string",
+                  "example": "Beach Ball"
                 }
               }
             }
@@ -310,10 +334,13 @@
               "type": "object",
               "properties": {
                 "productName": {
-                  "example": "any"
+                  "type": "string",
+                  "example": "Beach Ball"
                 },
                 "productInventory": {
-                  "example": "any"
+                  "type": "integer",
+                  "format": "int64",
+                  "example": "23"
                 }
               }
             }
@@ -394,13 +421,16 @@
               "type": "object",
               "properties": {
                 "products": {
-                  "example": "any"
+                  "example": "[23, 46, 39]"
                 },
                 "userId": {
-                  "example": "any"
+                  "type": "integer",
+                  "format": "int64",
+                  "example": "34"
                 },
                 "cartTotal": {
-                  "example": "any"
+                  "type": "float",
+                  "example": "234.56"
                 }
               }
             }
@@ -468,16 +498,17 @@
             "in": "body",
             "schema": {
               "type": "object",
-              "properties": {
-                "products": {
-                  "example": "any"
+              "products": {
+                  "example": "[23, 46, 39]"
                 },
                 "userId": {
-                  "example": "any"
+                  "type": "integer",
+                  "format": "int64",
+                  "example": "34"
                 },
                 "cartTotal": {
-                  "example": "any"
-                }
+                  "type": "float",
+                  "example": "234.56"
               }
             }
           }
@@ -557,13 +588,17 @@
               "type": "object",
               "properties": {
                 "cartId": {
-                  "example": "any"
+                  "type": "integer",
+                  "format": "int64",
+                  "example": "240"
                 },
                 "userId": {
-                  "example": "any"
+                  "type": "integer",
+                  "format": "int64",
+                  "example": "34"
                 },
                 "dateCreated": {
-                  "example": "any"
+                  "example": "04/05/2025"
                 }
               }
             }
@@ -633,13 +668,17 @@
               "type": "object",
               "properties": {
                 "cartId": {
-                  "example": "any"
+                  "type": "integer",
+                  "format": "int64",
+                  "example": "240"
                 },
                 "userId": {
-                  "example": "any"
+                  "type": "integer",
+                  "format": "int64",
+                  "example": "34"
                 },
                 "dateCreated": {
-                  "example": "any"
+                  "example": "04/05/2025"
                 }
               }
             }

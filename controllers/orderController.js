@@ -31,16 +31,14 @@ const getAllOrders = async (req, res, next) => {
 const getOrderById = async (req, res, next) => {
     try {
         const orderId = new ObjectId(req.params.id);
-        const response = await mongodb.getDatabase().db().collection(collection_name).find({_id:orderId});
-        response.toArray()
-        .then((users) => {
+        const response = await mongodb.getDatabase().db().collection(collection_name).findOne({_id:orderId});
             res.setHeader('Content-type', 'applications/json');
-            res.status(200).json(users);
-        });
-        if (!result) {
-            res.status(400).json(response.error || 'Some error occured while getting order')
-        }
+            res.status(200).json(response);
+        // if (!response) {
+        //     res.status(400).json(response.error || 'Some error occured while getting order')
+        // }
     } catch (error) {
+        res.status(400).json(response.error || 'Some error occured while getting order')
         next(error)
     }
 };

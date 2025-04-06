@@ -30,16 +30,14 @@ const getAllUsers = async (req, res, next) => {
 const getUserById = async (req, res, next) => {
     try {
         const userId = new ObjectId(req.params.id);
-        const response = await mongodb.getDatabase().db().collection(collection_name).find({_id:userId});
-        response.toArray()
-        .then((users) => {
+        const response = await mongodb.getDatabase().db().collection(collection_name).findOne({_id:userId});
             res.setHeader('Content-type', 'applications/json');
-            res.status(200).json(users);
-        });
-        if (!result) {
-            res.status(400).json(response.error || 'Some error occured while getting user')
-        }
+            res.status(200).json(response);
+        // if (!response) {
+        //     res.status(400).json(response.error || 'Some error occured while getting user')
+        // }
     } catch (error) {
+        res.status(400).json(response.error || 'Some error occured while getting user')
         next(error)
     }
 };
