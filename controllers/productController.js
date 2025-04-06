@@ -36,7 +36,7 @@ const getProductById = async (req, res, next) => {
     try {
         const productId = new ObjectId(req.params.id);
         const response = await mongodb.getDatabase().db().collection(collection_name).find({_id:productId});
-        result.toArray()
+        response.toArray()
         .then((users) => {
             res.setHeader('Content-type', 'applications/json');
             res.status(200).json(users);
