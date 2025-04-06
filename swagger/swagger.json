@@ -15,6 +15,7 @@
         "tags": [
           "Users"
         ],
+        "summary": "Get All Users",
         "description": "",
         "produces": [
           "applications/json"
@@ -35,7 +36,8 @@
         "tags": [
           "Users"
         ],
-        "description": "",
+        "summary": "Add User",
+        "description": "Add user to the database.",
         "parameters": [
           {
             "name": "body",
@@ -75,6 +77,15 @@
           "200": {
             "description": "OK"
           },
+          "201": {
+            "description": "Created"
+          },
+          "400": {
+            "schema": {
+              "$ref": "#/definitions/Errors"
+            },
+            "description": "Bad Request"
+          },
           "500": {
             "description": "Internal Server Error"
           }
@@ -86,7 +97,8 @@
         "tags": [
           "Users"
         ],
-        "description": "",
+        "summary": "Get User by Id",
+        "description": "Get specific user by id.",
         "produces": [
           "applications/json"
         ],
@@ -120,7 +132,8 @@
         "tags": [
           "Users"
         ],
-        "description": "",
+        "summary": "Edit User",
+        "description": "Edit specific user by Id",
         "parameters": [
           {
             "name": "id",
@@ -163,6 +176,12 @@
           "200": {
             "description": "OK"
           },
+          "400": {
+            "schema": {
+              "$ref": "#/definitions/Errors"
+            },
+            "description": "Bad Request"
+          },
           "500": {
             "description": "Internal Server Error"
           }
@@ -172,7 +191,8 @@
         "tags": [
           "Users"
         ],
-        "description": "",
+        "summary": "Delete User",
+        "description": "Delete user by Id",
         "parameters": [
           {
             "name": "id",
@@ -184,6 +204,9 @@
         "responses": {
           "200": {
             "description": "OK"
+          },
+          "204": {
+            "description": "Deleted item successfully."
           },
           "400": {
             "schema": {
@@ -205,6 +228,7 @@
         "tags": [
           "Product"
         ],
+        "summary": "Get All Products",
         "description": "",
         "produces": [
           "applications/json"
@@ -225,7 +249,8 @@
         "tags": [
           "Product"
         ],
-        "description": "",
+        "summary": "Add Product",
+        "description": "Add product to the database.",
         "parameters": [
           {
             "name": "body",
@@ -247,8 +272,14 @@
           }
         ],
         "responses": {
-          "200": {
-            "description": "OK"
+          "201": {
+            "description": "Created"
+          },
+          "400": {
+            "schema": {
+              "$ref": "#/definitions/Errors"
+            },
+            "description": "Bad Request"
           },
           "500": {
             "description": "Internal Server Error"
@@ -261,7 +292,8 @@
         "tags": [
           "Product"
         ],
-        "description": "",
+        "summary": "Get Product by Id",
+        "description": "Get specific product by id.",
         "produces": [
           "applications/json"
         ],
@@ -295,7 +327,8 @@
         "tags": [
           "Product"
         ],
-        "description": "",
+        "summary": "Edit Product",
+        "description": "Edit specific product by Id",
         "parameters": [
           {
             "name": "id",
@@ -323,6 +356,12 @@
           "200": {
             "description": "OK"
           },
+          "400": {
+            "schema": {
+              "$ref": "#/definitions/Errors"
+            },
+            "description": "Bad Request"
+          },
           "500": {
             "description": "Internal Server Error"
           }
@@ -332,7 +371,8 @@
         "tags": [
           "Product"
         ],
-        "description": "",
+        "summary": "Delete Product",
+        "description": "Delete product by Id",
         "parameters": [
           {
             "name": "id",
@@ -342,8 +382,8 @@
           }
         ],
         "responses": {
-          "200": {
-            "description": "OK"
+          "204": {
+            "description": "Deleted item successfully."
           },
           "400": {
             "schema": {
@@ -365,6 +405,7 @@
         "tags": [
           "Cart"
         ],
+        "summary": "Get All Carts",
         "description": "",
         "produces": [
           "applications/json"
@@ -385,7 +426,8 @@
         "tags": [
           "Cart"
         ],
-        "description": "",
+        "summary": "Create Cart",
+        "description": "Create a new cart record in the database",
         "parameters": [
           {
             "name": "body",
@@ -407,8 +449,14 @@
           }
         ],
         "responses": {
-          "200": {
-            "description": "OK"
+          "201": {
+            "description": "Created"
+          },
+          "400": {
+            "schema": {
+              "$ref": "#/definitions/Errors"
+            },
+            "description": "Bad Request"
           },
           "500": {
             "description": "Internal Server Error"
@@ -421,7 +469,8 @@
         "tags": [
           "Cart"
         ],
-        "description": "",
+        "summary": "Get Cart by Id",
+        "description": "Get a specific cart by the id of the cart",
         "produces": [
           "applications/json"
         ],
@@ -455,7 +504,8 @@
         "tags": [
           "Cart"
         ],
-        "description": "",
+        "summary": "Edit Cart",
+        "description": "Edit a cart by id",
         "parameters": [
           {
             "name": "id",
@@ -486,6 +536,12 @@
           "200": {
             "description": "OK"
           },
+          "400": {
+            "schema": {
+              "$ref": "#/definitions/Errors"
+            },
+            "description": "Bad Request"
+          },
           "500": {
             "description": "Internal Server Error"
           }
@@ -495,7 +551,8 @@
         "tags": [
           "Cart"
         ],
-        "description": "",
+        "summary": "Delete Cart",
+        "description": "Delete cart by provided Id",
         "parameters": [
           {
             "name": "id",
@@ -505,8 +562,8 @@
           }
         ],
         "responses": {
-          "200": {
-            "description": "OK"
+          "204": {
+            "description": "Item deleted successfully."
           },
           "400": {
             "schema": {
@@ -528,7 +585,8 @@
         "tags": [
           "Order"
         ],
-        "description": "",
+        "summary": "Get All Orders",
+        "description": "Get all orders in the database",
         "produces": [
           "applications/json"
         ],
@@ -548,7 +606,8 @@
         "tags": [
           "Order"
         ],
-        "description": "",
+        "summary": "Create Order",
+        "description": "Create order that will be stored in the database",
         "parameters": [
           {
             "name": "body",
@@ -570,8 +629,14 @@
           }
         ],
         "responses": {
-          "200": {
-            "description": "OK"
+          "201": {
+            "description": "Created"
+          },
+          "400": {
+            "schema": {
+              "$ref": "#/definitions/Errors"
+            },
+            "description": "Bad Request"
           },
           "500": {
             "description": "Internal Server Error"
@@ -584,7 +649,8 @@
         "tags": [
           "Order"
         ],
-        "description": "",
+        "summary": "Get Order by Id",
+        "description": "Get specific order by id.",
         "produces": [
           "applications/json"
         ],
@@ -618,7 +684,8 @@
         "tags": [
           "Order"
         ],
-        "description": "",
+        "summary": "Edit Order",
+        "description": "Edit specific order by id",
         "parameters": [
           {
             "name": "id",
@@ -649,6 +716,15 @@
           "200": {
             "description": "OK"
           },
+          "201": {
+            "description": "Created"
+          },
+          "400": {
+            "schema": {
+              "$ref": "#/definitions/Errors"
+            },
+            "description": "Bad Request"
+          },
           "500": {
             "description": "Internal Server Error"
           }
@@ -658,7 +734,8 @@
         "tags": [
           "Order"
         ],
-        "description": "",
+        "summary": "Delete Order",
+        "description": "Delete specific order",
         "parameters": [
           {
             "name": "id",
@@ -668,8 +745,8 @@
           }
         ],
         "responses": {
-          "200": {
-            "description": "OK"
+          "204": {
+            "description": "Deleted item successfully"
           },
           "400": {
             "schema": {
@@ -683,6 +760,41 @@
               "$ref": "#/definitions/Error"
             }
           }
+        }
+      }
+    }
+  },
+  "definitions": {
+    "NotFound": {
+      "type": "object",
+      "properties": {
+        "error": {
+          "type": "string",
+          "example": "Resource not found."
+        }
+      }
+    },
+    "Error": {
+      "type": "object",
+      "properties": {
+        "error": {
+          "type": "string",
+          "example": "An error occurred."
+        }
+      }
+    },
+    "Errors": {
+      "type": "array",
+      "items": {
+        "$ref": "#/definitions/Error"
+      }
+    },
+    "Unauthorized": {
+      "type": "object",
+      "properties": {
+        "error": {
+          "type": "string",
+          "example": "Unauthorized. Failed to authenticate."
         }
       }
     }

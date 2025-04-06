@@ -11,100 +11,155 @@ const collection_name = 'TBD'
 
 //GET all users
 const getAllUsers = async (req, res, next) => {
-    try {
-        const result = await mongodb.getDatabase().db().collection(collection_name).find();
-            result.toArray()
-            .then((users) => {
-                res.setHeader('Content-type', 'applications/json');
-                res.status(200).json(users);
-            })
-            if (!result) {
-                send.status(400);
-            }
-    } catch (error) {
-        next(error)
+  /*
+        #swagger.summary = 'Get All Users'
+        #swagger.descriptioin = 'Get all users in the database.'
+        #swagger.responses[200]        
+    */
+  try {
+    const result = await mongodb
+      .getDatabase()
+      .db()
+      .collection(collection_name)
+      .find();
+    result.toArray().then((users) => {
+      res.setHeader("Content-type", "applications/json");
+      res.status(200).json(users);
+    });
+    if (!result) {
+      send.status(400);
     }
+  } catch (error) {
+    next(error);
+  }
 };
 
 //GET user by ID
 const getUserById = async (req, res, next) => {
-    try {
-        const userId = new ObjectId(req.params.id);
-        const response = await mongodb.getDatabase().db().collection(collection_name).find({_id:userId});
-        result.toArray()
-        .then((users) => {
-            res.setHeader('Content-type', 'applications/json');
-            res.status(200).json(users);
-        });
-        if (!result) {
-            res.status(400).json(response.error || 'Some error occured while getting user')
-        }
-    } catch (error) {
-        next(error)
+  /*
+        #swagger.summary = 'Get User by Id'
+        #swagger.description = 'Get specific user by id.'
+        #swagger.responses[200]
+    */
+  try {
+    const userId = new ObjectId(req.params.id);
+    const response = await mongodb
+      .getDatabase()
+      .db()
+      .collection(collection_name)
+      .find({ _id: userId });
+    result.toArray().then((users) => {
+      res.setHeader("Content-type", "applications/json");
+      res.status(200).json(users);
+    });
+    if (!result) {
+      res
+        .status(400)
+        .json(response.error || "Some error occured while getting user");
     }
+  } catch (error) {
+    next(error);
+  }
 };
 
 //POST user
 const createUser = async (req, res, next) => {
-    try {
-        const user = {
-            firstName: req.body.firstName,
-            lastName: req.body.lastName,
-            email: req.body.email,
-            favoriteColor: req.body.favoriteColor,
-            accountType: req.body.accountType,
-            dateCreated: req.body.dateCreated,
-            dateUpdated: req.body.dateUpdated,
-            cartId: req.body.cartId
-        };
-        const response = await mongodb.getDatabase().db().collection(collection_name).insertOne(user);
-        if (response.acknowledged) {
-            res.status(200).json('User was Created');
-        } else {
-            res.status(500).json(response.error || 'Some error occured while updating user.');
-        }
-    } catch (error) {
-        next(error)
+  /*
+        #swagger.summary = 'Add User'
+        #swagger.description = 'Add user to the database.'
+        #swagger.responses[201]
+        #swagger.responses[400]
+    */
+  try {
+    const user = {
+      firstName: req.body.firstName,
+      lastName: req.body.lastName,
+      email: req.body.email,
+      favoriteColor: req.body.favoriteColor,
+      accountType: req.body.accountType,
+      dateCreated: req.body.dateCreated,
+      dateUpdated: req.body.dateUpdated,
+      cartId: req.body.cartId,
+    };
+    const response = await mongodb
+      .getDatabase()
+      .db()
+      .collection(collection_name)
+      .insertOne(user);
+    if (response.acknowledged) {
+      res.status(200).json("User was Created");
+    } else {
+      res
+        .status(500)
+        .json(response.error || "Some error occured while updating user.");
     }
+  } catch (error) {
+    next(error);
+  }
 }
 
 //PUT user by ID
 const editUser = async (req, res, next) => {
-    try {
-        const userId = new ObjectId(req.params.id);
-        const user = {
-            firstName: req.body.firstName,
-            lastName: req.body.lastName,
-            email: req.body.email,
-            accountType: req.body.accountType,
-            dateCreated: req.body.dateCreated,
-            dateUpdated: req.body.dateUpdated,
-            cartId: req.body.cartId
-        };
-        const response = await mongodb.getDatabase().db().collection(collection_name).replaceOne({_id:userId}, user);
-        if (response.acknowledged) {
-            res.status(200).json('User was Edited');
-            } else {
-                res.status(500).json(response.error || 'Some error occured while updating user.');
-            } 
-    } catch (error) {
-        next(error)
+  /*
+        #swagger.summary = 'Edit User'
+        #swagger.description = 'Edit specific user by Id'
+        #swagger.responses[200]
+        #swagger.responses[400]
+    */
+  try {
+    const userId = new ObjectId(req.params.id);
+    const user = {
+      firstName: req.body.firstName,
+      lastName: req.body.lastName,
+      email: req.body.email,
+      accountType: req.body.accountType,
+      dateCreated: req.body.dateCreated,
+      dateUpdated: req.body.dateUpdated,
+      cartId: req.body.cartId,
     };
+    const response = await mongodb
+      .getDatabase()
+      .db()
+      .collection(collection_name)
+      .replaceOne({ _id: userId }, user);
+    if (response.acknowledged) {
+      res.status(200).json("User was Edited");
+    } else {
+      res
+        .status(500)
+        .json(response.error || "Some error occured while updating user.");
+    }
+  } catch (error) {
+    next(error);
+  }
 }
 
 //DELETE user by ID
 const deleteUser = async (req, res, next) => {
-    try {
-        const userId = new ObjectId(req.params.id);
-        const response = await mongodb.getDatabase().db().collection(collection_name).deleteOne({_id:userId});
-        if (response.deletedCount > 0) {
-            res.status(200).json('User was Deleted');
-        } else {
-            res.status(400).json(response.error || 'Some error occured while deleting the user')
-        };
-    } catch (error) {
-        next(error)
+  /*
+        #swagger.summary = 'Delete User'
+        #swagger.description = 'Delete user by Id'
+        #swagger.responses[204] = {
+            description: 'Deleted item successfully.'
+        }
+    */
+  try {
+    const userId = new ObjectId(req.params.id);
+    const response = await mongodb
+      .getDatabase()
+      .db()
+      .collection(collection_name)
+      .deleteOne({ _id: userId });
+    if (response.deletedCount > 0) {
+      res.status(200).json("User was Deleted");
+    } else {
+      res
+        .status(400)
+        .json(response.error || "Some error occured while deleting the user");
     }
+  } catch (error) {
+    next(error);
+  }
 };
 
 module.exports = {
