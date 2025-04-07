@@ -4,7 +4,6 @@
 const router = require('express').Router();
 const cartCon = require('../controllers/cartController');
 
-
 //GET all carts
 router.get('/', cartCon.getAllCarts);
 /* This route should be protected for admins only */
