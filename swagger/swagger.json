@@ -6,19 +6,13 @@
     "version": "1.0.0"
   },
   "basePath": "/",
-  "schemes": [
-    null
-  ],
+  "schemes": [null],
   "paths": {
     "/users/": {
       "get": {
-        "tags": [
-          "Users"
-        ],
+        "tags": ["Users"],
         "description": "",
-        "produces": [
-          "applications/json"
-        ],
+        "produces": ["applications/json"],
         "responses": {
           "200": {
             "description": "OK"
@@ -32,9 +26,7 @@
         }
       },
       "post": {
-        "tags": [
-          "Users"
-        ],
+        "tags": ["Users"],
         "description": "",
         "parameters": [
           {
@@ -65,7 +57,6 @@
                   "example": "Customer"
                 },
                 "dateCreated": {
-
                   "example": "04/05/2024"
                 },
                 "dateUpdated": {
@@ -91,13 +82,9 @@
     },
     "/users/{id}": {
       "get": {
-        "tags": [
-          "Users"
-        ],
+        "tags": ["Users"],
         "description": "",
-        "produces": [
-          "applications/json"
-        ],
+        "produces": ["applications/json"],
         "parameters": [
           {
             "name": "id",
@@ -125,9 +112,7 @@
         }
       },
       "put": {
-        "tags": [
-          "Users"
-        ],
+        "tags": ["Users"],
         "description": "",
         "parameters": [
           {
@@ -164,7 +149,6 @@
                   "example": "Customer"
                 },
                 "dateCreated": {
-
                   "example": "04/05/2024"
                 },
                 "dateUpdated": {
@@ -189,9 +173,7 @@
         }
       },
       "delete": {
-        "tags": [
-          "Users"
-        ],
+        "tags": ["Users"],
         "description": "",
         "parameters": [
           {
@@ -222,13 +204,9 @@
     },
     "/product/": {
       "get": {
-        "tags": [
-          "Product"
-        ],
+        "tags": ["Product"],
         "description": "",
-        "produces": [
-          "applications/json"
-        ],
+        "produces": ["applications/json"],
         "responses": {
           "200": {
             "description": "OK"
@@ -242,9 +220,7 @@
         }
       },
       "post": {
-        "tags": [
-          "Product"
-        ],
+        "tags": ["Product"],
         "description": "",
         "parameters": [
           {
@@ -282,13 +258,9 @@
     },
     "/product/{id}": {
       "get": {
-        "tags": [
-          "Product"
-        ],
+        "tags": ["Product"],
         "description": "",
-        "produces": [
-          "applications/json"
-        ],
+        "produces": ["applications/json"],
         "parameters": [
           {
             "name": "id",
@@ -316,9 +288,7 @@
         }
       },
       "put": {
-        "tags": [
-          "Product"
-        ],
+        "tags": ["Product"],
         "description": "",
         "parameters": [
           {
@@ -356,9 +326,7 @@
         }
       },
       "delete": {
-        "tags": [
-          "Product"
-        ],
+        "tags": ["Product"],
         "description": "",
         "parameters": [
           {
@@ -389,13 +357,9 @@
     },
     "/cart/": {
       "get": {
-        "tags": [
-          "Cart"
-        ],
+        "tags": ["Cart"],
         "description": "",
-        "produces": [
-          "applications/json"
-        ],
+        "produces": ["applications/json"],
         "responses": {
           "200": {
             "description": "OK"
@@ -409,9 +373,7 @@
         }
       },
       "post": {
-        "tags": [
-          "Cart"
-        ],
+        "tags": ["Cart"],
         "description": "",
         "parameters": [
           {
@@ -448,13 +410,9 @@
     },
     "/cart/{id}": {
       "get": {
-        "tags": [
-          "Cart"
-        ],
+        "tags": ["Cart"],
         "description": "",
-        "produces": [
-          "applications/json"
-        ],
+        "produces": ["applications/json"],
         "parameters": [
           {
             "name": "id",
@@ -482,9 +440,7 @@
         }
       },
       "put": {
-        "tags": [
-          "Cart"
-        ],
+        "tags": ["Cart"],
         "description": "",
         "parameters": [
           {
@@ -498,7 +454,8 @@
             "in": "body",
             "schema": {
               "type": "object",
-              "products": {
+              "properties": {
+                "products": {
                   "example": "[23, 46, 39]"
                 },
                 "userId": {
@@ -509,6 +466,7 @@
                 "cartTotal": {
                   "type": "float",
                   "example": "234.56"
+                }
               }
             }
           }
@@ -523,9 +481,7 @@
         }
       },
       "delete": {
-        "tags": [
-          "Cart"
-        ],
+        "tags": ["Cart"],
         "description": "",
         "parameters": [
           {
@@ -556,13 +512,9 @@
     },
     "/order/": {
       "get": {
-        "tags": [
-          "Order"
-        ],
+        "tags": ["Order"],
         "description": "",
-        "produces": [
-          "applications/json"
-        ],
+        "produces": ["applications/json"],
         "responses": {
           "200": {
             "description": "OK"
@@ -576,9 +528,7 @@
         }
       },
       "post": {
-        "tags": [
-          "Order"
-        ],
+        "tags": ["Order"],
         "description": "",
         "parameters": [
           {
@@ -616,13 +566,9 @@
     },
     "/order/{id}": {
       "get": {
-        "tags": [
-          "Order"
-        ],
+        "tags": ["Order"],
         "description": "",
-        "produces": [
-          "applications/json"
-        ],
+        "produces": ["applications/json"],
         "parameters": [
           {
             "name": "id",
@@ -650,9 +596,7 @@
         }
       },
       "put": {
-        "tags": [
-          "Order"
-        ],
+        "tags": ["Order"],
         "description": "",
         "parameters": [
           {
@@ -694,9 +638,7 @@
         }
       },
       "delete": {
-        "tags": [
-          "Order"
-        ],
+        "tags": ["Order"],
         "description": "",
         "parameters": [
           {
@@ -722,6 +664,29 @@
               "$ref": "#/definitions/Error"
             }
           }
+        }
+      }
+    }
+  },
+  "definitions": {
+    "Error": {
+      "type": "object",
+      "properties": {
+        "message": {
+          "type": "string",
+          "example": "Error description"
+        }
+      }
+    },
+    "Errors": {
+      "type": "object",
+      "properties": {
+        "errors": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "example": ["Error 1", "Error 2"]
         }
       }
     }

@@ -1,13 +1,13 @@
 //jaden binette
 
-const validate = require("validate.js");
+const validate = require('validate.js');
 
 const validateProductInput = (req, res, next) => {
   // Define validation constraints for a single product
   const productConstraints = {
     productName: {
       presence: true,
-      type: "string",
+      type: 'string',
       length: { minimum: 1 }, // At least one character
     },
     productPrice: {
@@ -22,7 +22,7 @@ const validateProductInput = (req, res, next) => {
   if (validationErrors) {
     // Respond with validation errors
     return res.status(400).json({
-      message: "Validation failed",
+      message: 'Validation failed',
       errors: validationErrors,
     });
   }

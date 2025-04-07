@@ -13,7 +13,7 @@ router.use('/', swaggerRoute);
 
 //All /users routes
 router.use(
-  "/users",
+  '/users',
   userRoute
   /*
         #swagger.tags = ['Users']
@@ -38,7 +38,7 @@ router.use(
 
 //All /product routes
 router.use(
-  "/product",
+  '/product',
   productRoute
   /*
         #swagger.tags = ['Product']
@@ -63,7 +63,7 @@ router.use(
 
 //All /cart routes
 router.use(
-  "/cart",
+  '/cart',
   cartRoute
   /*
         #swagger.tags = ['Cart']
@@ -88,7 +88,7 @@ router.use(
 
 //All /order routes
 router.use(
-  "/order",
+  '/order',
   orderRoute
   /*
         #swagger.tags = ['Order']

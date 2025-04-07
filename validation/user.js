@@ -1,18 +1,18 @@
 //jaden binette
 
-const validate = require("validate.js");
+const validate = require('validate.js');
 
 const validateUserInput = (req, res, next) => {
   // Define validation constraints
   const constraints = {
     firstName: {
       presence: true,
-      type: "string",
+      type: 'string',
       length: { minimum: 1 }, // Ensures at least one character
     },
     lastName: {
       presence: true,
-      type: "string",
+      type: 'string',
       length: { minimum: 1 }, // Ensures at least one character
     },
     email: {
@@ -21,7 +21,7 @@ const validateUserInput = (req, res, next) => {
     },
     accountType: {
       presence: true,
-      inclusion: ["standard", "premium", "admin"], // Ensures it's one of these values
+      inclusion: ['standard', 'premium', 'admin'], // Ensures it's one of these values
     },
     dateCreated: {
       presence: true,
@@ -33,10 +33,10 @@ const validateUserInput = (req, res, next) => {
     },
     cartId: {
       presence: true,
-      type: "string", // First, ensure it's a string
+      type: 'string', // First, ensure it's a string
       format: {
         pattern: /^[0-9a-fA-F]{24}$/, // Regular expression for MongoDB ObjectID
-        message: "must be a valid MongoDB ObjectID",
+        message: 'must be a valid MongoDB ObjectID',
       },
     },
   };
@@ -47,7 +47,7 @@ const validateUserInput = (req, res, next) => {
   if (validationErrors) {
     // Respond with validation errors
     return res.status(400).json({
-      message: "Validation failed",
+      message: 'Validation failed',
       errors: validationErrors,
     });
   }
