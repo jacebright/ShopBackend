@@ -8,8 +8,31 @@ const doc = {
   },
   host: config.swagger.host,
   schemes: [config.swagger.scheme],
-  definitions: {},
+  definitions: {
+    Error: {
+      type: 'object',
+      properties: {
+        message: {
+          type: 'string',
+          example: 'Error description',
+        },
+      },
+    },
+    Errors: {
+      type: 'object',
+      properties: {
+        errors: {
+          type: 'array',
+          items: {
+            type: 'string',
+          },
+          example: ['Error 1', 'Error 2'],
+        },
+      },
+    },
+  },
 };
+
 
 const outputFile = './swagger.json';
 const routes = ['../routes/index.js'];
