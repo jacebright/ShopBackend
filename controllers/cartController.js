@@ -14,7 +14,10 @@ const getAllCarts = async (req, res, next) => {
     /*
       #swagger.summary = 'Get All Carts'
       #swagger.descripton = 'Get all carts in the database'
-      #swagger.responses[200]
+      #swagger.responses[200] = {
+        description: 'List of all carts',
+        schema: { $ref: '#/definitions/Carts'}
+      }
      */
     try {
         const result = await mongodb.getDatabase().db().collection(collection_name).find();
@@ -38,7 +41,14 @@ const getCartByUserId = async (req, res, next) => {
     /*
       #swagger.summary = 'Get Cart by Id'
       #swagger.description = 'Get a specific cart by the id of the cart'
-      #swagger.responses[200]
+      #swagger.parameters[id] = {
+        required: true,
+        description: 'Id of the cart to be returned'
+      }
+      #swagger.responses[200] = {
+        description: 'The cart requested',
+        schema: { $ref: '#/definitions/Cart'}
+      }
      */
     try {
         const cartId = new ObjectId(req.params.id);
@@ -56,6 +66,12 @@ const createCart = async (req, res, next) => {
     /*
       #swagger.summary = 'Create Cart'
       #swagger.description = 'Create a new cart record in the database'
+      #swagger.parameters[New Cart] = {
+        in: 'body',
+        description: 'New Cart to be added',
+        required: true,
+        schema: {$ref: '#/definitions/NewCartExample'}
+      }
       #swagger.responses[201]
       #swagger.responses[400]
      */
@@ -81,6 +97,16 @@ const editCart = async (req, res, next) => {
     /*
       #swagger.summary = 'Edit Cart'
       #swagger.description = 'Edit a cart by id'
+      #swagger.parameters[id] = {
+        required: true,
+        description: 'Id of the cart to be edited'
+      }
+      #swagger.parameters[Update] = {
+        in: 'body',
+        required: true,
+        description: 'Object with desired changes.',
+        schema: {$ref: '#/definitions/UpdateCartExample'}
+      }
       #swagger.responses[200]
       #swagger.responses[400]
      */
@@ -107,6 +133,10 @@ const deleteCart = async (req, res, next) => {
     /**
       #swagger.summary = 'Delete Cart'
       #swagger.description = 'Delete cart by provided Id'
+      #swagger.parameters[id] = {
+        required: true,
+        description: 'Id of the object to delete'
+      }
       #swagger.responses[204] = {
         description: 'Item deleted successfully.'
       }

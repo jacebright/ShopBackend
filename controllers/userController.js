@@ -1,21 +1,22 @@
 //Contributed by Jared Scott
 
 // Imports
-const mongodb = require('../db/database'); //Change as needed for database function location
-const ObjectId = require('mongodb').ObjectId;
-
+const mongodb = require("../db/database"); //Change as needed for database function location
+const ObjectId = require("mongodb").ObjectId;
 
 // Database collection name values
-const collection_name = 'TBD'
-
+const collection_name = "TBD";
 
 //GET all users
 const getAllUsers = async (req, res, next) => {
   /*
-        #swagger.summary = 'Get All Users'
-        #swagger.descriptioin = 'Get all users in the database.'
-        #swagger.responses[200]        
-    */
+      #swagger.summary = 'Get All Users'
+      #swagger.description = 'Get all users in the database'
+      #swagger.responses[200] = {
+        description: 'List of all users',
+        schema: { $ref: '#/definitions/Users'}
+      }
+     */
   try {
     const result = await mongodb
       .getDatabase()
@@ -39,7 +40,14 @@ const getUserById = async (req, res, next) => {
   /*
         #swagger.summary = 'Get User by Id'
         #swagger.description = 'Get specific user by id.'
-        #swagger.responses[200]
+        #swagger.parameters[id] = {
+          required: true,
+          description: 'Id of the user to be returned'
+        }
+        #swagger.responses[200] = {
+          description: 'The cart requested',
+          schema: { $ref: '#/definitions/User'}
+        }
     */
   try {
     const userId = new ObjectId(req.params.id);
@@ -67,6 +75,12 @@ const createUser = async (req, res, next) => {
   /*
         #swagger.summary = 'Add User'
         #swagger.description = 'Add user to the database.'
+        #swagger.parameters[New User] = {
+          in: 'body',
+          description: 'New user to be added',
+          required: true,
+          schema: {$ref: '#/definitions/NewUserExample'}
+        }
         #swagger.responses[201]
         #swagger.responses[400]
     */
@@ -96,13 +110,23 @@ const createUser = async (req, res, next) => {
   } catch (error) {
     next(error);
   }
-}
+};
 
 //PUT user by ID
 const editUser = async (req, res, next) => {
   /*
         #swagger.summary = 'Edit User'
         #swagger.description = 'Edit specific user by Id'
+        #swagger.parameters[id] = {
+          required: true,
+          description: 'Id of the user to be edited'
+        }
+        #swagger.parameters[Update] = {
+          in: 'body',
+          required: true,
+          description: 'Object with desired changes.',
+          schema: {$ref: '#/definitions/UpdateUserExample'}
+        }
         #swagger.responses[200]
         #swagger.responses[400]
     */
@@ -132,13 +156,17 @@ const editUser = async (req, res, next) => {
   } catch (error) {
     next(error);
   }
-}
+};
 
 //DELETE user by ID
 const deleteUser = async (req, res, next) => {
   /*
         #swagger.summary = 'Delete User'
         #swagger.description = 'Delete user by Id'
+        #swagger.parameters[id] = {
+          required: true,
+          description: 'Id of the object to delete'
+        }
         #swagger.responses[204] = {
             description: 'Deleted item successfully.'
         }
@@ -163,9 +191,9 @@ const deleteUser = async (req, res, next) => {
 };
 
 module.exports = {
-    getAllUsers,
-    getUserById,
-    createUser,
-    editUser,
-    deleteUser
-}
+  getAllUsers,
+  getUserById,
+  createUser,
+  editUser,
+  deleteUser,
+};
