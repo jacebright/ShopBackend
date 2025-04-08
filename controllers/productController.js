@@ -28,7 +28,7 @@ const getInventory = async (req, res, next) => {
       .collection(collection_name)
       .find();
     result.toArray().then((users) => {
-      res.setHeader('Content-type', 'applications/json');\
+      res.setHeader('Content-type', 'applications/json');
       res.status(200).json(users);
     });
     if (!result) {
