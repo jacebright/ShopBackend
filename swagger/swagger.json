@@ -366,9 +366,7 @@
         ],
         "summary": "Get All Carts",
         "description": "",
-        "produces": [
-          "applications/json"
-        ],
+        "produces": ["applications/json"],
         "responses": {
           "200": {
             "description": "List of all carts",

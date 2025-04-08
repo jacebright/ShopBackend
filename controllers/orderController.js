@@ -1,15 +1,16 @@
 //Contributed by Jared Scott
 
 // Imports
-const mongodb = require("../db/database"); //Change as needed for database function location
-const ObjectId = require("mongodb").ObjectId;
+
+const mongodb = require('../db/database'); //Change as needed for database function location
+const ObjectId = require('mongodb').ObjectId;
 
 // Database collection name values
-const collection_name = "TBD";
+const collection_name = 'orders';
 
 //GET all orders
 const getAllOrders = async (req, res, next) => {
-  /*
+    /*
       #swagger.summary = 'Get All Orders'
       #swagger.description = 'Get all orders in the database'
       #swagger.responses[200] = {
@@ -24,7 +25,7 @@ const getAllOrders = async (req, res, next) => {
       .collection(collection_name)
       .find();
     result.toArray().then((users) => {
-      res.setHeader("Content-type", "applications/json");
+      res.setHeader('Content-type', 'applications/json');
       res.status(200).json(users);
     });
     if (!result) {
@@ -37,7 +38,7 @@ const getAllOrders = async (req, res, next) => {
 
 //GET order by ID
 const getOrderById = async (req, res, next) => {
-  /*
+    /*
       #swagger.summary = 'Get Order by Id'
       #swagger.description = 'Get specific order by id.'
       #swagger.parameters[id] = {
@@ -55,17 +56,16 @@ const getOrderById = async (req, res, next) => {
       .getDatabase()
       .db()
       .collection(collection_name)
-      .find({ _id: orderId });
-    result.toArray().then((users) => {
-      res.setHeader("Content-type", "applications/json");
-      res.status(200).json(users);
-    });
-    if (!result) {
-      res
-        .status(400)
-        .json(response.error || "Some error occured while getting order");
-    }
+      .findOne({ _id: orderId });
+    res.setHeader('Content-type', 'applications/json');
+    res.status(200).json(response);
+    // if (!response) {
+    //     res.status(400).json(response.error || 'Some error occured while getting order')
+    // }
   } catch (error) {
+    res
+      .status(400)
+      .json(response.error || 'Some error occured while getting order');
     next(error);
   }
 };
@@ -75,7 +75,7 @@ const getOrderById = async (req, res, next) => {
 // cartId for their specific cart and the product array within
 
 const createOrder = async (req, res, next) => {
-  /*
+    /*
       #swagger.summary = 'Create Order'
       #swagger.description = 'Create order that will be stored in the database'
       #swagger.parameters[New Order] = {
@@ -99,11 +99,11 @@ const createOrder = async (req, res, next) => {
       .collection(collection_name)
       .insertOne(order);
     if (response.acknowledged) {
-      res.status(201).json("User was Created");
+      res.status(201).json('User was Created');
     } else {
       res
         .status(500)
-        .json(response.error || "Some error occured while creating order.");
+        .json(response.error || 'Some error occured while creating order.');
     }
   } catch (error) {
     next(error);
@@ -141,11 +141,11 @@ const editOrder = async (req, res, next) => {
       .collection(collection_name)
       .replaceOne({ _id: orderId }, order);
     if (response.acknowledged) {
-      res.status(200).json("Order was Edited");
+      res.status(200).json('Order was Edited');
     } else {
       res
         .status(500)
-        .json(response.error || "Some error occured while updating order.");
+        .json(response.error || 'Some error occured while updating order.');
     }
   } catch (error) {
     next(error);
@@ -173,11 +173,11 @@ const deleteOrder = async (req, res, next) => {
       .collection(collection_name)
       .deleteOne({ _id: orderId });
     if (response.deletedCount > 0) {
-      res.status(204).json("Order was Deleted");
+      res.status(204).json('Order was Deleted');
     } else {
       res
         .status(400)
-        .json(response.error || "Some error occured while deleting the order");
+        .json(response.error || 'Some error occured while deleting the order');
     }
   } catch (error) {
     next(error);

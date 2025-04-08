@@ -1,15 +1,15 @@
 //Contributed by Jared Scott
 
 // Imports
-const mongodb = require("../db/database"); //Change as needed for database function location
-const ObjectId = require("mongodb").ObjectId;
+const mongodb = require('../db/database'); //Change as needed for database function location
+const ObjectId = require('mongodb').ObjectId;
 
 // Database collection name values
-const collection_name = "TBD";
+const collection_name = 'users';
 
 //GET all users
 const getAllUsers = async (req, res, next) => {
-  /*
+    /*
       #swagger.summary = 'Get All Users'
       #swagger.description = 'Get all users in the database'
       #swagger.responses[200] = {
@@ -24,7 +24,7 @@ const getAllUsers = async (req, res, next) => {
       .collection(collection_name)
       .find();
     result.toArray().then((users) => {
-      res.setHeader("Content-type", "applications/json");
+      res.setHeader('Content-type', 'applications/json');
       res.status(200).json(users);
     });
     if (!result) {
@@ -55,24 +55,23 @@ const getUserById = async (req, res, next) => {
       .getDatabase()
       .db()
       .collection(collection_name)
-      .find({ _id: userId });
-    result.toArray().then((users) => {
-      res.setHeader("Content-type", "applications/json");
-      res.status(200).json(users);
-    });
-    if (!result) {
-      res
-        .status(400)
-        .json(response.error || "Some error occured while getting user");
-    }
+      .findOne({ _id: userId });
+    res.setHeader('Content-type', 'applications/json');
+    res.status(200).json(response);
+    // if (!response) {
+    //     res.status(400).json(response.error || 'Some error occured while getting user')
+    // }
   } catch (error) {
+    res
+      .status(400)
+      .json(response.error || 'Some error occured while getting user');
     next(error);
   }
 };
 
 //POST user
 const createUser = async (req, res, next) => {
-  /*
+    /*
         #swagger.summary = 'Add User'
         #swagger.description = 'Add user to the database.'
         #swagger.parameters[New User] = {
@@ -101,11 +100,11 @@ const createUser = async (req, res, next) => {
       .collection(collection_name)
       .insertOne(user);
     if (response.acknowledged) {
-      res.status(200).json("User was Created");
+      res.status(201).json('User was Created');
     } else {
       res
         .status(500)
-        .json(response.error || "Some error occured while updating user.");
+        .json(response.error || 'Some error occured while updating user.');
     }
   } catch (error) {
     next(error);
@@ -114,7 +113,7 @@ const createUser = async (req, res, next) => {
 
 //PUT user by ID
 const editUser = async (req, res, next) => {
-  /*
+    /*
         #swagger.summary = 'Edit User'
         #swagger.description = 'Edit specific user by Id'
         #swagger.parameters[id] = {
@@ -147,11 +146,11 @@ const editUser = async (req, res, next) => {
       .collection(collection_name)
       .replaceOne({ _id: userId }, user);
     if (response.acknowledged) {
-      res.status(200).json("User was Edited");
+      res.status(200).json('User was Edited');
     } else {
       res
         .status(500)
-        .json(response.error || "Some error occured while updating user.");
+        .json(response.error || 'Some error occured while updating user.');
     }
   } catch (error) {
     next(error);
@@ -179,11 +178,11 @@ const deleteUser = async (req, res, next) => {
       .collection(collection_name)
       .deleteOne({ _id: userId });
     if (response.deletedCount > 0) {
-      res.status(200).json("User was Deleted");
+      res.status(204).json('User was Deleted');
     } else {
       res
         .status(400)
-        .json(response.error || "Some error occured while deleting the user");
+        .json(response.error || 'Some error occured while deleting the user');
     }
   } catch (error) {
     next(error);

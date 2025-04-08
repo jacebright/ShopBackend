@@ -18,13 +18,14 @@ const connect = (callback) => {
 
   const client = new MongoClient(uri);
 
-  client.connect()
-    .then(connectedClient => {
-      _db = connectedClient.db();
+  client
+    .connect(uri)
+    .then((connectedClient) => {
+      _db = connectedClient;
       console.log('Successfully connected to MongoDB.');
       return callback(null, _db);
     })
-    .catch(err => {
+    .catch((err) => {
       console.error('Error connecting to MongoDB:', err);
       return callback(err);
     });

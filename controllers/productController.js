@@ -1,11 +1,11 @@
 //Contributed by Jared Scott
 
 // Imports
-const mongodb = require("../db/database"); //Change as needed for database function location
-const ObjectId = require("mongodb").ObjectId;
+const mongodb = require('../db/database'); //Change as needed for database function location
+const ObjectId = require('mongodb').ObjectId;
 
 // Database collection name values
-const collection_name = "TBD";
+const collection_name = 'products';
 
 /* I assume this collection will include product names, item count and an item ID, 
    so I will build the POST request accordingly.
@@ -28,7 +28,7 @@ const getInventory = async (req, res, next) => {
       .collection(collection_name)
       .find();
     result.toArray().then((users) => {
-      res.setHeader("Content-type", "applications/json");
+      res.setHeader('Content-type', 'applications/json');\
       res.status(200).json(users);
     });
     if (!result) {
@@ -59,17 +59,16 @@ const getProductById = async (req, res, next) => {
       .getDatabase()
       .db()
       .collection(collection_name)
-      .find({ _id: productId });
-    result.toArray().then((users) => {
-      res.setHeader("Content-type", "applications/json");
-      res.status(200).json(users);
-    });
-    if (!result) {
-      res
-        .status(400)
-        .json(response.error || "Some error occured while getting product");
-    }
+      .findOne({ _id: productId });
+    res.setHeader('Content-type', 'applications/json');
+    res.status(200).json(response);
+    // if (!response) {
+    //     res.status(400).json(response.error || 'Some error occured while getting product')
+    // }
   } catch (error) {
+    res
+      .status(400)
+      .json(response.error || 'Some error occured while getting product');
     next(error);
   }
 };
@@ -100,11 +99,11 @@ const addProduct = async (req, res, next) => {
       .collection(collection_name)
       .insertOne(product);
     if (response.acknowledged) {
-      res.status(201).json("Product was Created");
+      res.status(201).json('Product was Created');
     } else {
       res
         .status(500)
-        .json(response.error || "Some error occured while updating product.");
+        .json(response.error || 'Some error occured while updating product.');
     }
   } catch (error) {
     next(error);
@@ -142,11 +141,11 @@ const editProduct = async (req, res, next) => {
       .collection(collection_name)
       .replaceOne({ _id: productId }, product);
     if (response.acknowledged) {
-      res.status(200).json("User was Edited");
+      res.status(200).json('User was Edited');
     } else {
       res
         .status(500)
-        .json(response.error || "Some error occured while updating product.");
+        .json(response.error || 'Some error occured while updating product.');
     }
   } catch (error) {
     next(error);
@@ -174,12 +173,12 @@ const deleteProduct = async (req, res, next) => {
       .collection(collection_name)
       .deleteOne({ _id: productId });
     if (response.deletedCount > 0) {
-      res.status(204).json("User was Deleted");
+      res.status(204).json('User was Deleted');
     } else {
       res
         .status(400)
         .json(
-          response.error || "Some error occured while deleting the product"
+          response.error || 'Some error occured while deleting the product'
         );
     }
   } catch (error) {
