@@ -1,6 +1,7 @@
 //Contributed by Jared Scott
 
 // Imports
+
 const mongodb = require('../db/database'); //Change as needed for database function location
 const ObjectId = require('mongodb').ObjectId;
 
@@ -9,6 +10,14 @@ const collection_name = 'orders';
 
 //GET all orders
 const getAllOrders = async (req, res, next) => {
+    /*
+      #swagger.summary = 'Get All Orders'
+      #swagger.description = 'Get all orders in the database'
+      #swagger.responses[200] = {
+        description: 'List of all orders',
+        schema: { $ref: '#/definitions/Orders'}
+      }
+     */
   try {
     const result = await mongodb
       .getDatabase()
@@ -29,6 +38,18 @@ const getAllOrders = async (req, res, next) => {
 
 //GET order by ID
 const getOrderById = async (req, res, next) => {
+    /*
+      #swagger.summary = 'Get Order by Id'
+      #swagger.description = 'Get specific order by id.'
+      #swagger.parameters[id] = {
+        required: true,
+        description: 'Id of the order to be returned'
+      }
+      #swagger.responses[200] = {
+        description: 'Requested order',
+        schema: { $ref: '#/definitions/Order'}
+      }
+     */
   try {
     const orderId = new ObjectId(req.params.id);
     const response = await mongodb
@@ -54,6 +75,18 @@ const getOrderById = async (req, res, next) => {
 // cartId for their specific cart and the product array within
 
 const createOrder = async (req, res, next) => {
+    /*
+      #swagger.summary = 'Create Order'
+      #swagger.description = 'Create order that will be stored in the database'
+      #swagger.parameters[New Order] = {
+        in: 'body',
+        description: 'New order to insert',
+        required: true,
+        schema: { $ref: '#/definitions/NewOrderExample'}
+      }
+      #swagger.responses[201]
+      #swagger.responses[400]
+     */
   try {
     const order = {
       cartId: req.body.cartId,
@@ -66,7 +99,7 @@ const createOrder = async (req, res, next) => {
       .collection(collection_name)
       .insertOne(order);
     if (response.acknowledged) {
-      res.status(200).json('User was Created');
+      res.status(201).json('User was Created');
     } else {
       res
         .status(500)
@@ -79,6 +112,22 @@ const createOrder = async (req, res, next) => {
 
 //PUT order by ID
 const editOrder = async (req, res, next) => {
+  /*
+      #swagger.summary = 'Edit Order'
+      #swagger.description = 'Edit specific order by id'
+      #swagger.parameters[id] = {
+        required: true,
+        description: 'Id of the order to be edited'
+      }
+      #swagger.parameters[Update] = {
+        in: 'body',
+        required: true,
+        description: 'Object with desired changes.',
+        schema: {$ref: '#/definitions/UpdateOrderExample'}
+      }
+      #swagger.responses[201]
+      #swagger.responses[400]
+     */
   try {
     const orderId = new ObjectId(req.params.id);
     const order = {
@@ -105,6 +154,17 @@ const editOrder = async (req, res, next) => {
 
 //DELETE order by ID
 const deleteOrder = async (req, res, next) => {
+  /**
+      #swagger.summary = 'Delete Order'
+      #swagger.description = 'Delete specific order'
+      #swagger.parameters[id] = {
+        required: true,
+        description: 'Id of the object to delete'
+      }
+      #swagger.responses[204] = {
+        description: 'Deleted item successfully'
+      }
+     */
   try {
     const orderId = new ObjectId(req.params.id);
     const response = await mongodb
@@ -113,7 +173,7 @@ const deleteOrder = async (req, res, next) => {
       .collection(collection_name)
       .deleteOne({ _id: orderId });
     if (response.deletedCount > 0) {
-      res.status(200).json('Order was Deleted');
+      res.status(204).json('Order was Deleted');
     } else {
       res
         .status(400)

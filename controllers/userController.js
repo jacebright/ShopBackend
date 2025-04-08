@@ -9,6 +9,14 @@ const collection_name = 'users';
 
 //GET all users
 const getAllUsers = async (req, res, next) => {
+    /*
+      #swagger.summary = 'Get All Users'
+      #swagger.description = 'Get all users in the database'
+      #swagger.responses[200] = {
+        description: 'List of all users',
+        schema: { $ref: '#/definitions/Users'}
+      }
+     */
   try {
     const result = await mongodb
       .getDatabase()
@@ -29,6 +37,18 @@ const getAllUsers = async (req, res, next) => {
 
 //GET user by ID
 const getUserById = async (req, res, next) => {
+  /*
+        #swagger.summary = 'Get User by Id'
+        #swagger.description = 'Get specific user by id.'
+        #swagger.parameters[id] = {
+          required: true,
+          description: 'Id of the user to be returned'
+        }
+        #swagger.responses[200] = {
+          description: 'The cart requested',
+          schema: { $ref: '#/definitions/User'}
+        }
+    */
   try {
     const userId = new ObjectId(req.params.id);
     const response = await mongodb
@@ -51,6 +71,18 @@ const getUserById = async (req, res, next) => {
 
 //POST user
 const createUser = async (req, res, next) => {
+    /*
+        #swagger.summary = 'Add User'
+        #swagger.description = 'Add user to the database.'
+        #swagger.parameters[New User] = {
+          in: 'body',
+          description: 'New user to be added',
+          required: true,
+          schema: {$ref: '#/definitions/NewUserExample'}
+        }
+        #swagger.responses[201]
+        #swagger.responses[400]
+    */
   try {
     const user = {
       firstName: req.body.firstName,
@@ -68,7 +100,7 @@ const createUser = async (req, res, next) => {
       .collection(collection_name)
       .insertOne(user);
     if (response.acknowledged) {
-      res.status(200).json('User was Created');
+      res.status(201).json('User was Created');
     } else {
       res
         .status(500)
@@ -81,6 +113,22 @@ const createUser = async (req, res, next) => {
 
 //PUT user by ID
 const editUser = async (req, res, next) => {
+    /*
+        #swagger.summary = 'Edit User'
+        #swagger.description = 'Edit specific user by Id'
+        #swagger.parameters[id] = {
+          required: true,
+          description: 'Id of the user to be edited'
+        }
+        #swagger.parameters[Update] = {
+          in: 'body',
+          required: true,
+          description: 'Object with desired changes.',
+          schema: {$ref: '#/definitions/UpdateUserExample'}
+        }
+        #swagger.responses[200]
+        #swagger.responses[400]
+    */
   try {
     const userId = new ObjectId(req.params.id);
     const user = {
@@ -111,6 +159,17 @@ const editUser = async (req, res, next) => {
 
 //DELETE user by ID
 const deleteUser = async (req, res, next) => {
+  /*
+        #swagger.summary = 'Delete User'
+        #swagger.description = 'Delete user by Id'
+        #swagger.parameters[id] = {
+          required: true,
+          description: 'Id of the object to delete'
+        }
+        #swagger.responses[204] = {
+            description: 'Deleted item successfully.'
+        }
+    */
   try {
     const userId = new ObjectId(req.params.id);
     const response = await mongodb
@@ -119,7 +178,7 @@ const deleteUser = async (req, res, next) => {
       .collection(collection_name)
       .deleteOne({ _id: userId });
     if (response.deletedCount > 0) {
-      res.status(200).json('User was Deleted');
+      res.status(204).json('User was Deleted');
     } else {
       res
         .status(400)

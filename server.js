@@ -1,6 +1,7 @@
 // server.js
 
 // Imports
+require('dotenv').config();
 const express = require('express');
 const cors = require('cors');
 const mongodb = require('./db/database'); // Your MongoDB connection setup

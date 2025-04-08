@@ -13,6 +13,14 @@ const collection_name = 'products';
 
 //GET Product inventory
 const getInventory = async (req, res, next) => {
+  /*
+      #swagger.summary = 'Get All Products'
+      #swagger.description = 'Get all products in the database'
+      #swagger.responses[200] = {
+        description: 'List of all products',
+        schema: { $ref: '#/definitions/Products'}
+      }
+     */
   try {
     const result = await mongodb
       .getDatabase()
@@ -20,7 +28,7 @@ const getInventory = async (req, res, next) => {
       .collection(collection_name)
       .find();
     result.toArray().then((users) => {
-      res.setHeader('Content-type', 'applications/json');
+      res.setHeader('Content-type', 'applications/json');\
       res.status(200).json(users);
     });
     if (!result) {
@@ -33,6 +41,18 @@ const getInventory = async (req, res, next) => {
 
 //GET product by ID
 const getProductById = async (req, res, next) => {
+  /*
+        #swagger.summary = 'Get Product by Id'
+        #swagger.description = 'Get specific product by id.'
+        #swagger.parameters[id] = {
+          required: true,
+          description: 'Id of the product to be returned'
+        }
+        #swagger.responses[200] = {
+          description: 'The product requested',
+          schema: { $ref: '#/definitions/Product'}
+        }
+    */
   try {
     const productId = new ObjectId(req.params.id);
     const response = await mongodb
@@ -55,6 +75,18 @@ const getProductById = async (req, res, next) => {
 
 //POST new product
 const addProduct = async (req, res, next) => {
+  /*
+        #swagger.summary = 'Add Product'
+        #swagger.description = 'Add product to the database.'
+        #swagger.parameters[New Product] = {
+          in: 'body',
+          description: 'New product to be added',
+          required: true,
+          schema: {$ref: '#/definitions/NewProductExample'}
+        }
+        #swagger.responses[201]
+        #swagger.responses[400]
+    */
   try {
     const product = {
       productId: req.body.productId,
@@ -67,7 +99,7 @@ const addProduct = async (req, res, next) => {
       .collection(collection_name)
       .insertOne(product);
     if (response.acknowledged) {
-      res.status(200).json('Product was Created');
+      res.status(201).json('Product was Created');
     } else {
       res
         .status(500)
@@ -80,6 +112,22 @@ const addProduct = async (req, res, next) => {
 
 //PUT product by ID
 const editProduct = async (req, res, next) => {
+  /*
+        #swagger.summary = 'Edit Product'
+        #swagger.description = 'Edit specific product by Id'
+        #swagger.parameters[id] = {
+          required: true,
+          description: 'Id of the product to be edited'
+        }
+        #swagger.parameters[Update] = {
+          in: 'body',
+          required: true,
+          description: 'Object with desired changes.',
+          schema: {$ref: '#/definitions/UpdateProductExample'}
+        }
+        #swagger.responses[200]
+        #swagger.responses[400]
+    */
   try {
     const productId = new ObjectId(req.params.id);
     const product = {
@@ -106,6 +154,17 @@ const editProduct = async (req, res, next) => {
 
 //DELETE product by ID
 const deleteProduct = async (req, res, next) => {
+  /*
+        #swagger.summary = 'Delete Product'
+        #swagger.description = 'Delete product by Id'
+        #swagger.parameters[id] = {
+          required: true,
+          description: 'Id of the object to delete'
+        }
+        #swagger.responses[204] = {
+            description: 'Deleted item successfully.'
+        }
+    */
   try {
     const productId = new ObjectId(req.params.id);
     const response = await mongodb
@@ -114,7 +173,7 @@ const deleteProduct = async (req, res, next) => {
       .collection(collection_name)
       .deleteOne({ _id: productId });
     if (response.deletedCount > 0) {
-      res.status(200).json('User was Deleted');
+      res.status(204).json('User was Deleted');
     } else {
       res
         .status(400)

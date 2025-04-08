@@ -5,17 +5,28 @@
     "description": "API for CSE341 shop backend group project",
     "version": "1.0.0"
   },
+  "host": "localhost:8080",
   "basePath": "/",
-  "schemes": [null],
+  "schemes": [
+    "http"
+  ],
   "paths": {
     "/users/": {
       "get": {
-        "tags": ["Users"],
-        "description": "",
-        "produces": ["applications/json"],
+        "tags": [
+          "Users"
+        ],
+        "summary": "Get All Users",
+        "description": "Get all users in the database",
+        "produces": [
+          "applications/json"
+        ],
         "responses": {
           "200": {
-            "description": "OK"
+            "description": "List of all users",
+            "schema": {
+              "$ref": "#/definitions/Users"
+            }
           },
           "500": {
             "description": "Server Error",
@@ -26,53 +37,34 @@
         }
       },
       "post": {
-        "tags": ["Users"],
-        "description": "",
+        "tags": [
+          "Users"
+        ],
+        "summary": "Add User",
+        "description": "Add user to the database.",
         "parameters": [
           {
-            "name": "body",
+            "name": "New User",
             "in": "body",
+            "description": "New user to be added",
+            "required": true,
             "schema": {
-              "type": "object",
-              "properties": {
-                "firstName": {
-                  "type": "string",
-                  "example": "John"
-                },
-                "lastName": {
-                  "type": "string",
-                  "example": "Deere"
-                },
-                "email": {
-                  "type": "email",
-                  "example": "john@deere.tractor"
-                },
-                "favoriteColor": {
-                  "type": "string",
-                  "example": "Green"
-                },
-                "accountType": {
-                  "type": "string",
-                  "enum": ["Customer", "Employee"],
-                  "example": "Customer"
-                },
-                "dateCreated": {
-                  "example": "04/05/2024"
-                },
-                "dateUpdated": {
-                  "example": "04/05/2025"
-                },
-                "cartId": {
-                  "type": "integer",
-                  "example": 34
-                }
-              }
+              "$ref": "#/definitions/NewUserExample"
             }
           }
         ],
         "responses": {
           "200": {
             "description": "OK"
+          },
+          "201": {
+            "description": "Created"
+          },
+          "400": {
+            "schema": {
+              "$ref": "#/definitions/Errors"
+            },
+            "description": "Bad Request"
           },
           "500": {
             "description": "Internal Server Error"
@@ -82,20 +74,29 @@
     },
     "/users/{id}": {
       "get": {
-        "tags": ["Users"],
-        "description": "",
-        "produces": ["applications/json"],
+        "tags": [
+          "Users"
+        ],
+        "summary": "Get User by Id",
+        "description": "Get specific user by id.",
+        "produces": [
+          "applications/json"
+        ],
         "parameters": [
           {
             "name": "id",
             "in": "path",
             "required": true,
-            "type": "string"
+            "type": "string",
+            "description": "Id of the user to be returned"
           }
         ],
         "responses": {
           "200": {
-            "description": "OK"
+            "description": "The cart requested",
+            "schema": {
+              "$ref": "#/definitions/User"
+            }
           },
           "400": {
             "schema": {
@@ -112,54 +113,26 @@
         }
       },
       "put": {
-        "tags": ["Users"],
-        "description": "",
+        "tags": [
+          "Users"
+        ],
+        "summary": "Edit User",
+        "description": "Edit specific user by Id",
         "parameters": [
           {
             "name": "id",
             "in": "path",
             "required": true,
-            "type": "string"
+            "type": "string",
+            "description": "Id of the user to be edited"
           },
           {
-            "name": "body",
+            "name": "Update",
             "in": "body",
+            "required": true,
+            "description": "Object with desired changes.",
             "schema": {
-              "type": "object",
-              "properties": {
-                "firstName": {
-                  "type": "string",
-                  "example": "John"
-                },
-                "lastName": {
-                  "type": "string",
-                  "example": "Deere"
-                },
-                "email": {
-                  "type": "email",
-                  "example": "john@deere.tractor"
-                },
-                "favoriteColor": {
-                  "type": "string",
-                  "example": "Green"
-                },
-                "accountType": {
-                  "type": "string",
-                  "enum": ["Customer", "Employee"],
-                  "example": "Customer"
-                },
-                "dateCreated": {
-                  "example": "04/05/2024"
-                },
-                "dateUpdated": {
-                  "example": "04/05/2025"
-                },
-                "cartId": {
-                  "type": "integer",
-                  "format": "int64",
-                  "example": "34"
-                }
-              }
+              "$ref": "#/definitions/UpdateUserExample"
             }
           }
         ],
@@ -167,25 +140,38 @@
           "200": {
             "description": "OK"
           },
+          "400": {
+            "schema": {
+              "$ref": "#/definitions/Errors"
+            },
+            "description": "Bad Request"
+          },
           "500": {
             "description": "Internal Server Error"
           }
         }
       },
       "delete": {
-        "tags": ["Users"],
-        "description": "",
+        "tags": [
+          "Users"
+        ],
+        "summary": "Delete User",
+        "description": "Delete user by Id",
         "parameters": [
           {
             "name": "id",
             "in": "path",
             "required": true,
-            "type": "string"
+            "type": "string",
+            "description": "Id of the object to delete"
           }
         ],
         "responses": {
           "200": {
             "description": "OK"
+          },
+          "204": {
+            "description": "Deleted item successfully."
           },
           "400": {
             "schema": {
@@ -204,12 +190,20 @@
     },
     "/product/": {
       "get": {
-        "tags": ["Product"],
-        "description": "",
-        "produces": ["applications/json"],
+        "tags": [
+          "Product"
+        ],
+        "summary": "Get All Products",
+        "description": "Get all products in the database",
+        "produces": [
+          "applications/json"
+        ],
         "responses": {
           "200": {
-            "description": "OK"
+            "description": "List of all products",
+            "schema": {
+              "$ref": "#/definitions/Products"
+            }
           },
           "500": {
             "description": "Server Error",
@@ -220,35 +214,31 @@
         }
       },
       "post": {
-        "tags": ["Product"],
-        "description": "",
+        "tags": [
+          "Product"
+        ],
+        "summary": "Add Product",
+        "description": "Add product to the database.",
         "parameters": [
           {
-            "name": "body",
+            "name": "New Product",
             "in": "body",
+            "description": "New product to be added",
+            "required": true,
             "schema": {
-              "type": "object",
-              "properties": {
-                "productId": {
-                  "type": "integer",
-                  "format": "int64",
-                  "example": "987"
-                },
-                "productPrice": {
-                  "type": "float",
-                  "example": "199.99"
-                },
-                "productName": {
-                  "type": "string",
-                  "example": "Beach Ball"
-                }
-              }
+              "$ref": "#/definitions/NewProductExample"
             }
           }
         ],
         "responses": {
-          "200": {
-            "description": "OK"
+          "201": {
+            "description": "Created"
+          },
+          "400": {
+            "schema": {
+              "$ref": "#/definitions/Errors"
+            },
+            "description": "Bad Request"
           },
           "500": {
             "description": "Internal Server Error"
@@ -258,20 +248,29 @@
     },
     "/product/{id}": {
       "get": {
-        "tags": ["Product"],
-        "description": "",
-        "produces": ["applications/json"],
+        "tags": [
+          "Product"
+        ],
+        "summary": "Get Product by Id",
+        "description": "Get specific product by id.",
+        "produces": [
+          "applications/json"
+        ],
         "parameters": [
           {
             "name": "id",
             "in": "path",
             "required": true,
-            "type": "string"
+            "type": "string",
+            "description": "Id of the product to be returned"
           }
         ],
         "responses": {
           "200": {
-            "description": "OK"
+            "description": "The product requested",
+            "schema": {
+              "$ref": "#/definitions/Product"
+            }
           },
           "400": {
             "schema": {
@@ -288,31 +287,26 @@
         }
       },
       "put": {
-        "tags": ["Product"],
-        "description": "",
+        "tags": [
+          "Product"
+        ],
+        "summary": "Edit Product",
+        "description": "Edit specific product by Id",
         "parameters": [
           {
             "name": "id",
             "in": "path",
             "required": true,
-            "type": "string"
+            "type": "string",
+            "description": "Id of the product to be edited"
           },
           {
-            "name": "body",
+            "name": "Update",
             "in": "body",
+            "required": true,
+            "description": "Object with desired changes.",
             "schema": {
-              "type": "object",
-              "properties": {
-                "productName": {
-                  "type": "string",
-                  "example": "Beach Ball"
-                },
-                "productInventory": {
-                  "type": "integer",
-                  "format": "int64",
-                  "example": "23"
-                }
-              }
+              "$ref": "#/definitions/UpdateProductExample"
             }
           }
         ],
@@ -320,25 +314,35 @@
           "200": {
             "description": "OK"
           },
+          "400": {
+            "schema": {
+              "$ref": "#/definitions/Errors"
+            },
+            "description": "Bad Request"
+          },
           "500": {
             "description": "Internal Server Error"
           }
         }
       },
       "delete": {
-        "tags": ["Product"],
-        "description": "",
+        "tags": [
+          "Product"
+        ],
+        "summary": "Delete Product",
+        "description": "Delete product by Id",
         "parameters": [
           {
             "name": "id",
             "in": "path",
             "required": true,
-            "type": "string"
+            "type": "string",
+            "description": "Id of the object to delete"
           }
         ],
         "responses": {
-          "200": {
-            "description": "OK"
+          "204": {
+            "description": "Deleted item successfully."
           },
           "400": {
             "schema": {
@@ -357,12 +361,18 @@
     },
     "/cart/": {
       "get": {
-        "tags": ["Cart"],
+        "tags": [
+          "Cart"
+        ],
+        "summary": "Get All Carts",
         "description": "",
         "produces": ["applications/json"],
         "responses": {
           "200": {
-            "description": "OK"
+            "description": "List of all carts",
+            "schema": {
+              "$ref": "#/definitions/Carts"
+            }
           },
           "500": {
             "description": "Server Error",
@@ -373,34 +383,31 @@
         }
       },
       "post": {
-        "tags": ["Cart"],
-        "description": "",
+        "tags": [
+          "Cart"
+        ],
+        "summary": "Create Cart",
+        "description": "Create a new cart record in the database",
         "parameters": [
           {
-            "name": "body",
+            "name": "New Cart",
             "in": "body",
+            "description": "New Cart to be added",
+            "required": true,
             "schema": {
-              "type": "object",
-              "properties": {
-                "products": {
-                  "example": "[23, 46, 39]"
-                },
-                "userId": {
-                  "type": "integer",
-                  "format": "int64",
-                  "example": "34"
-                },
-                "cartTotal": {
-                  "type": "float",
-                  "example": "234.56"
-                }
-              }
+              "$ref": "#/definitions/NewCartExample"
             }
           }
         ],
         "responses": {
-          "200": {
-            "description": "OK"
+          "201": {
+            "description": "Created"
+          },
+          "400": {
+            "schema": {
+              "$ref": "#/definitions/Errors"
+            },
+            "description": "Bad Request"
           },
           "500": {
             "description": "Internal Server Error"
@@ -410,20 +417,29 @@
     },
     "/cart/{id}": {
       "get": {
-        "tags": ["Cart"],
-        "description": "",
-        "produces": ["applications/json"],
+        "tags": [
+          "Cart"
+        ],
+        "summary": "Get Cart by Id",
+        "description": "Get a specific cart by the id of the cart",
+        "produces": [
+          "applications/json"
+        ],
         "parameters": [
           {
             "name": "id",
             "in": "path",
             "required": true,
-            "type": "string"
+            "type": "string",
+            "description": "Id of the cart to be returned"
           }
         ],
         "responses": {
           "200": {
-            "description": "OK"
+            "description": "The cart requested",
+            "schema": {
+              "$ref": "#/definitions/Cart"
+            }
           },
           "400": {
             "schema": {
@@ -440,34 +456,26 @@
         }
       },
       "put": {
-        "tags": ["Cart"],
-        "description": "",
+        "tags": [
+          "Cart"
+        ],
+        "summary": "Edit Cart",
+        "description": "Edit a cart by id",
         "parameters": [
           {
             "name": "id",
             "in": "path",
             "required": true,
-            "type": "string"
+            "type": "string",
+            "description": "Id of the cart to be edited"
           },
           {
-            "name": "body",
+            "name": "Update",
             "in": "body",
+            "required": true,
+            "description": "Object with desired changes.",
             "schema": {
-              "type": "object",
-              "properties": {
-                "products": {
-                  "example": "[23, 46, 39]"
-                },
-                "userId": {
-                  "type": "integer",
-                  "format": "int64",
-                  "example": "34"
-                },
-                "cartTotal": {
-                  "type": "float",
-                  "example": "234.56"
-                }
-              }
+              "$ref": "#/definitions/UpdateCartExample"
             }
           }
         ],
@@ -475,25 +483,35 @@
           "200": {
             "description": "OK"
           },
+          "400": {
+            "schema": {
+              "$ref": "#/definitions/Errors"
+            },
+            "description": "Bad Request"
+          },
           "500": {
             "description": "Internal Server Error"
           }
         }
       },
       "delete": {
-        "tags": ["Cart"],
-        "description": "",
+        "tags": [
+          "Cart"
+        ],
+        "summary": "Delete Cart",
+        "description": "Delete cart by provided Id",
         "parameters": [
           {
             "name": "id",
             "in": "path",
             "required": true,
-            "type": "string"
+            "type": "string",
+            "description": "Id of the object to delete"
           }
         ],
         "responses": {
-          "200": {
-            "description": "OK"
+          "204": {
+            "description": "Item deleted successfully."
           },
           "400": {
             "schema": {
@@ -512,12 +530,20 @@
     },
     "/order/": {
       "get": {
-        "tags": ["Order"],
-        "description": "",
-        "produces": ["applications/json"],
+        "tags": [
+          "Order"
+        ],
+        "summary": "Get All Orders",
+        "description": "Get all orders in the database",
+        "produces": [
+          "applications/json"
+        ],
         "responses": {
           "200": {
-            "description": "OK"
+            "description": "List of all orders",
+            "schema": {
+              "$ref": "#/definitions/Orders"
+            }
           },
           "500": {
             "description": "Server Error",
@@ -528,35 +554,31 @@
         }
       },
       "post": {
-        "tags": ["Order"],
-        "description": "",
+        "tags": [
+          "Order"
+        ],
+        "summary": "Create Order",
+        "description": "Create order that will be stored in the database",
         "parameters": [
           {
-            "name": "body",
+            "name": "New Order",
             "in": "body",
+            "description": "New order to insert",
+            "required": true,
             "schema": {
-              "type": "object",
-              "properties": {
-                "cartId": {
-                  "type": "integer",
-                  "format": "int64",
-                  "example": "240"
-                },
-                "userId": {
-                  "type": "integer",
-                  "format": "int64",
-                  "example": "34"
-                },
-                "dateCreated": {
-                  "example": "04/05/2025"
-                }
-              }
+              "$ref": "#/definitions/NewOrderExample"
             }
           }
         ],
         "responses": {
-          "200": {
-            "description": "OK"
+          "201": {
+            "description": "Created"
+          },
+          "400": {
+            "schema": {
+              "$ref": "#/definitions/Errors"
+            },
+            "description": "Bad Request"
           },
           "500": {
             "description": "Internal Server Error"
@@ -566,20 +588,29 @@
     },
     "/order/{id}": {
       "get": {
-        "tags": ["Order"],
-        "description": "",
-        "produces": ["applications/json"],
+        "tags": [
+          "Order"
+        ],
+        "summary": "Get Order by Id",
+        "description": "Get specific order by id.",
+        "produces": [
+          "applications/json"
+        ],
         "parameters": [
           {
             "name": "id",
             "in": "path",
             "required": true,
-            "type": "string"
+            "type": "string",
+            "description": "Id of the order to be returned"
           }
         ],
         "responses": {
           "200": {
-            "description": "OK"
+            "description": "Requested order",
+            "schema": {
+              "$ref": "#/definitions/Order"
+            }
           },
           "400": {
             "schema": {
@@ -596,35 +627,26 @@
         }
       },
       "put": {
-        "tags": ["Order"],
-        "description": "",
+        "tags": [
+          "Order"
+        ],
+        "summary": "Edit Order",
+        "description": "Edit specific order by id",
         "parameters": [
           {
             "name": "id",
             "in": "path",
             "required": true,
-            "type": "string"
+            "type": "string",
+            "description": "Id of the order to be edited"
           },
           {
-            "name": "body",
+            "name": "Update",
             "in": "body",
+            "required": true,
+            "description": "Object with desired changes.",
             "schema": {
-              "type": "object",
-              "properties": {
-                "cartId": {
-                  "type": "integer",
-                  "format": "int64",
-                  "example": "240"
-                },
-                "userId": {
-                  "type": "integer",
-                  "format": "int64",
-                  "example": "34"
-                },
-                "dateCreated": {
-                  "example": "04/05/2025"
-                }
-              }
+              "$ref": "#/definitions/UpdateOrderExample"
             }
           }
         ],
@@ -632,25 +654,38 @@
           "200": {
             "description": "OK"
           },
+          "201": {
+            "description": "Created"
+          },
+          "400": {
+            "schema": {
+              "$ref": "#/definitions/Errors"
+            },
+            "description": "Bad Request"
+          },
           "500": {
             "description": "Internal Server Error"
           }
         }
       },
       "delete": {
-        "tags": ["Order"],
-        "description": "",
+        "tags": [
+          "Order"
+        ],
+        "summary": "Delete Order",
+        "description": "Delete specific order",
         "parameters": [
           {
             "name": "id",
             "in": "path",
             "required": true,
-            "type": "string"
+            "type": "string",
+            "description": "Id of the object to delete"
           }
         ],
         "responses": {
-          "200": {
-            "description": "OK"
+          "204": {
+            "description": "Deleted item successfully"
           },
           "400": {
             "schema": {
@@ -669,24 +704,288 @@
     }
   },
   "definitions": {
+    "User": {
+      "type": "object",
+      "properties": {
+        "firstName": {
+          "type": "string",
+          "example": "any"
+        },
+        "lastName": {
+          "type": "string",
+          "example": "any"
+        },
+        "email": {
+          "type": "string",
+          "example": "any"
+        },
+        "favoriteColor": {
+          "type": "string",
+          "example": "any"
+        },
+        "accountType": {
+          "type": "string",
+          "example": "any"
+        },
+        "dateCreated": {
+          "type": "string",
+          "example": "any"
+        },
+        "dateUpdated": {
+          "type": "string",
+          "example": "any"
+        },
+        "cartId": {
+          "type": "string",
+          "example": "any"
+        }
+      }
+    },
+    "NewUserExample": {
+      "type": "object",
+      "properties": {
+        "firstName": {
+          "type": "string",
+          "example": "John"
+        },
+        "lastName": {
+          "type": "string",
+          "example": "Doe"
+        },
+        "email": {
+          "type": "string",
+          "example": "john.doe@example.com"
+        },
+        "favoriteColor": {
+          "type": "string",
+          "example": "blue"
+        },
+        "accountType": {
+          "type": "string",
+          "example": "premium"
+        },
+        "dateCreated": {
+          "type": "string",
+          "example": "2025-04-07T12:00:00Z"
+        },
+        "dateUpdated": {
+          "type": "string",
+          "example": "2025-04-07T12:00:00Z"
+        },
+        "cartId": {
+          "type": "string",
+          "example": "12345"
+        }
+      }
+    },
+    "UpdateUserExample": {
+      "type": "object",
+      "properties": {
+        "firstName": {
+          "type": "string",
+          "example": "Larry"
+        }
+      }
+    },
+    "Users": {
+      "type": "array",
+      "items": {
+        "$ref": "#/definiions/User"
+      }
+    },
+    "Product": {
+      "type": "object",
+      "properties": {
+        "productId": {
+          "type": "string",
+          "example": "any"
+        },
+        "productPrice": {
+          "type": "string",
+          "example": "any"
+        },
+        "productName": {
+          "type": "string",
+          "example": "any"
+        }
+      }
+    },
+    "NewProductExample": {
+      "type": "object",
+      "properties": {
+        "productId": {
+          "type": "string",
+          "example": "123"
+        },
+        "productPrice": {
+          "type": "number",
+          "example": 19.99
+        },
+        "productName": {
+          "type": "string",
+          "example": "Sample Product"
+        }
+      }
+    },
+    "UpdateProductExample": {
+      "type": "object",
+      "properties": {
+        "productPrice": {
+          "type": "number",
+          "example": 24.99
+        }
+      }
+    },
+    "Products": {
+      "type": "array",
+      "items": {
+        "$ref": "#/definitions/Product"
+      }
+    },
+    "Cart": {
+      "type": "object",
+      "properties": {
+        "products": {
+          "type": "string",
+          "example": "any"
+        },
+        "userId": {
+          "type": "string",
+          "example": "any"
+        },
+        "cartTotal": {
+          "type": "string",
+          "example": "any"
+        }
+      }
+    },
+    "NewCartExample": {
+      "type": "object",
+      "properties": {
+        "products": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "productId": {
+                "type": "string",
+                "example": "123"
+              },
+              "productPrice": {
+                "type": "number",
+                "example": 19.99
+              },
+              "productName": {
+                "type": "string",
+                "example": "Sample Product"
+              }
+            }
+          }
+        },
+        "userId": {
+          "type": "string",
+          "example": "user123"
+        },
+        "cartTotal": {
+          "type": "number",
+          "example": 59.97
+        }
+      }
+    },
+    "UpdateCartExample": {
+      "type": "object",
+      "properties": {
+        "cartTotal": {
+          "type": "number",
+          "example": 79.99
+        }
+      }
+    },
+    "Carts": {
+      "type": "array",
+      "items": {
+        "$ref": "#/definitions/Cart"
+      }
+    },
+    "Order": {
+      "type": "object",
+      "properties": {
+        "cartId": {
+          "type": "string",
+          "example": "any"
+        },
+        "userId": {
+          "type": "string",
+          "example": "any"
+        },
+        "dateCreated": {
+          "type": "string",
+          "example": "any"
+        }
+      }
+    },
+    "NewOrderExample": {
+      "type": "object",
+      "properties": {
+        "cartId": {
+          "type": "string",
+          "example": "cart123"
+        },
+        "userId": {
+          "type": "string",
+          "example": "user123"
+        },
+        "dateCreated": {
+          "type": "string",
+          "example": "2025-04-07T12:00:00Z"
+        }
+      }
+    },
+    "UpdateOrderExample": {
+      "type": "object",
+      "properties": {
+        "dateCreated": {
+          "type": "string",
+          "example": "2025-04-08T12:00:00Z"
+        }
+      }
+    },
+    "Orders": {
+      "type": "array",
+      "items": {
+        "$ref": "#/definitions/Order"
+      }
+    },
+    "NotFound": {
+      "type": "object",
+      "properties": {
+        "error": {
+          "type": "string",
+          "example": "Resource not found."
+        }
+      }
+    },
     "Error": {
       "type": "object",
       "properties": {
-        "message": {
+        "error": {
           "type": "string",
-          "example": "Error description"
+          "example": "An error occurred."
         }
       }
     },
     "Errors": {
+      "type": "array",
+      "items": {
+        "$ref": "#/definitions/Error"
+      }
+    },
+    "Unauthorized": {
       "type": "object",
       "properties": {
-        "errors": {
-          "type": "array",
-          "items": {
-            "type": "string"
-          },
-          "example": ["Error 1", "Error 2"]
+        "error": {
+          "type": "string",
+          "example": "Unauthorized. Failed to authenticate."
         }
       }
     }
