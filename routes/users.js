@@ -15,7 +15,7 @@ router.get('/:id', userCon.getUserById);
 router.post('/',validation, userCon.createUser);
 
 //PUT user
-router.put('/:id', userCon.editUser);
+router.put('/:id',validation, userCon.editUser);
 
 //DELETE user
 router.delete('/:id', userCon.deleteUser);
