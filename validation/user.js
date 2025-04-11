@@ -25,7 +25,8 @@ const validateUserInput = (req, res, next) => {
     },
     dateCreated: {
       presence: true,
-      datetime: true, // Validates it's a valid date-time
+      type: "string",
+      length: { minimum: 8, maximum: 8 },
     },
     dateUpdated: {
       presence: true,
