@@ -167,7 +167,7 @@ const deleteCart = async (req, res, next) => {
       .collection(collection_name)
       .deleteOne({ _id: cartId });
     if (response.deletedCount > 0) {
-      res.status(204).json('Cart was Deleted');
+      res.status(200).json('Cart was Deleted');
     } else {
       res
         .status(400)

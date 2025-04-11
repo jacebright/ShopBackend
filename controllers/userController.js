@@ -100,7 +100,7 @@ const createUser = async (req, res, next) => {
       .collection(collection_name)
       .insertOne(user);
     if (response.acknowledged) {
-      res.status(201).json('User was Created');
+      res.status(200).json('User was Created');
     } else {
       res
         .status(500)
@@ -178,7 +178,7 @@ const deleteUser = async (req, res, next) => {
       .collection(collection_name)
       .deleteOne({ _id: userId });
     if (response.deletedCount > 0) {
-      res.status(204).json('User was Deleted');
+      res.status(200).json('User was Deleted');
     } else {
       res
         .status(400)

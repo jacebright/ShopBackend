@@ -173,7 +173,7 @@ const deleteOrder = async (req, res, next) => {
       .collection(collection_name)
       .deleteOne({ _id: orderId });
     if (response.deletedCount > 0) {
-      res.status(204).json('Order was Deleted');
+      res.status(200).json('Order was Deleted');
     } else {
       res
         .status(400)

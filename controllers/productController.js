@@ -99,7 +99,7 @@ const addProduct = async (req, res, next) => {
       .collection(collection_name)
       .insertOne(product);
     if (response.acknowledged) {
-      res.status(201).json('Product was Created');
+      res.status(200).json('Product was Created');
     } else {
       res
         .status(500)
@@ -173,7 +173,7 @@ const deleteProduct = async (req, res, next) => {
       .collection(collection_name)
       .deleteOne({ _id: productId });
     if (response.deletedCount > 0) {
-      res.status(204).json('Product was Deleted');
+      res.status(200).json('Product was Deleted');
     } else {
       res
         .status(400)
