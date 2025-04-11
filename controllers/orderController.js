@@ -99,7 +99,7 @@ const createOrder = async (req, res, next) => {
       .collection(collection_name)
       .insertOne(order);
     if (response.acknowledged) {
-      res.status(201).json('User was Created');
+      res.status(201).json('Order was Created');
     } else {
       res
         .status(500)

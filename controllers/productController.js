@@ -141,7 +141,7 @@ const editProduct = async (req, res, next) => {
       .collection(collection_name)
       .replaceOne({ _id: productId }, product);
     if (response.acknowledged) {
-      res.status(200).json('User was Edited');
+      res.status(200).json('Product was Edited');
     } else {
       res
         .status(500)
@@ -173,7 +173,7 @@ const deleteProduct = async (req, res, next) => {
       .collection(collection_name)
       .deleteOne({ _id: productId });
     if (response.deletedCount > 0) {
-      res.status(204).json('User was Deleted');
+      res.status(204).json('Product was Deleted');
     } else {
       res
         .status(400)
