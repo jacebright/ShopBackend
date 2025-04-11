@@ -1,4 +1,4 @@
-//jaden binette
+//Jaden Binette
 
 const validate = require('validate.js');
 
@@ -8,34 +8,44 @@ const validateUserInput = (req, res, next) => {
     firstName: {
       presence: true,
       type: 'string',
-      length: { minimum: 1 }, // Ensures at least one character
+      length: { minimum: 1 }, // At least one character
     },
     lastName: {
       presence: true,
       type: 'string',
-      length: { minimum: 1 }, // Ensures at least one character
+      length: { minimum: 1 }, // At least one character
     },
     email: {
       presence: true,
-      email: true, // Validates proper email format
+      email: true, // Validates email format
+    },
+    favoriteColor: {
+      presence: true,
+      type: 'string', // Ensures it's a string
     },
     accountType: {
       presence: true,
-      inclusion: ['standard', 'premium', 'admin'], // Ensures it's one of these values
+      inclusion: ['Client', 'Admin', 'Standard'], // Validates against expected values
     },
     dateCreated: {
       presence: true,
-      datetime: true, // Validates it's a valid date-time
+      format: {
+        pattern: /^\d{2}\/\d{2}\/\d{4}$/, // Validates "MM/DD/YYYY" format
+        message: 'must be in MM/DD/YYYY format',
+      },
     },
     dateUpdated: {
       presence: true,
-      datetime: true, // Validates it's a valid date-time
+      format: {
+        pattern: /^\d{2}\/\d{2}\/\d{4}$/, // Validates "MM/DD/YYYY" format
+        message: 'must be in MM/DD/YYYY format',
+      },
     },
     cartId: {
       presence: true,
-      type: 'string', // First, ensure it's a string
+      type: 'string', // Ensures it's a string
       format: {
-        pattern: /^[0-9a-fA-F]{24}$/, // Regular expression for MongoDB ObjectID
+        pattern: /^[0-9a-fA-F]{24}$/, // MongoDB ObjectID pattern
         message: 'must be a valid MongoDB ObjectID',
       },
     },
@@ -52,7 +62,6 @@ const validateUserInput = (req, res, next) => {
     });
   }
 
-  // If validation passes, proceed to the next middleware/controller
   next();
 };
 
