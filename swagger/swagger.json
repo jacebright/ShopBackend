@@ -790,7 +790,7 @@
     "Users": {
       "type": "array",
       "items": {
-        "$ref": "#/definiions/User"
+        "$ref": "#/definitions/User"
       }
     },
     "Product": {
