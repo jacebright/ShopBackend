@@ -33,7 +33,7 @@ const doc = {
     UpdateUserExample: {
       firstName: "Larry",
     },
-    Users: [{ $ref: "#/definiions/User" }],
+    Users: [{ $ref: "#/definitions/User" }],
     Product: {
       productId: "any",
       productPrice: "any",
