@@ -3,6 +3,7 @@
 //Imports
 const router = require('express').Router();
 const cartCon = require('../controllers/cartController');
+const validation = require('../validation/cart');
 
 //GET all carts
 router.get('/', cartCon.getAllCarts);
@@ -14,10 +15,10 @@ router.get('/:id', cartCon.getCartByUserId);
 // I have not implemented this yet.
 
 //POST cart
-router.post('/', cartCon.createCart);
+router.post('/',validation, cartCon.createCart);
 
 //PUT cart
-router.put('/:id', cartCon.editCart);
+router.put('/:id',validation, cartCon.editCart);
 
 //DELETE cart
 router.delete('/:id', cartCon.deleteCart);

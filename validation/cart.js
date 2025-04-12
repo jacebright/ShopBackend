@@ -3,14 +3,7 @@ const validate = require('validate.js');
 const validateCartInput = (req, res, next) => {
   // Define validation constraints
   const constraints = {
-    _id: {
-      presence: true,
-      type: 'string', // Ensures it's a string
-      format: {
-        pattern: /^[0-9a-fA-F]{24}$/, // MongoDB ObjectID pattern
-        message: 'must be a valid MongoDB ObjectID',
-      },
-    },
+
     products: {
       presence: true,
       type: 'array', // Ensures it's an array
