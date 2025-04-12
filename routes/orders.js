@@ -3,6 +3,7 @@
 //Imports
 const router = require('express').Router();
 const orderCon = require('../controllers/orderController');
+const validation = require('../validation/order');
 // order
 //GET all Orders
 router.get('/', orderCon.getAllOrders);
@@ -12,10 +13,10 @@ router.get('/', orderCon.getAllOrders);
 router.get('/:id', orderCon.getOrderById);
 
 //POST order
-router.post('/', orderCon.createOrder);
+router.post('/',validation, orderCon.createOrder);
 
 //PUT order
-router.put('/:id', orderCon.editOrder);
+router.put('/:id',validation, orderCon.editOrder);
 
 //DELETE order
 router.delete('/:id', orderCon.deleteOrder);

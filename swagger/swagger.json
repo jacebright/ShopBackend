@@ -5,7 +5,7 @@
     "description": "API for CSE341 shop backend group project",
     "version": "1.0.0"
   },
-  "host": "localhost:8080",
+  "host": "localhost:3001",
   "basePath": "/",
   "schemes": [
     "http"
