@@ -7,6 +7,7 @@ const productRoute = require('./products');
 const cartRoute = require('./cart');
 const orderRoute = require('./orders');
 const swaggerRoute = require('./swagger');
+const passport = require('passport');
 
 //Swagger routes, needed for swagger ui
 router.use('/', swaggerRoute);
@@ -110,5 +111,16 @@ router.use(
         }
     */
 );
+
+// Authentication routes 
+// Contributed by Jace Bright
+router.use('/login', passport.authenticate('github'), (req, res) => {});
+
+router.get('/logout', function (req, res, next) {
+    req.logout(function(err) {
+        if (err) {return next(err); }
+        res.redirect('/');
+    })
+})
 
 module.exports = router;

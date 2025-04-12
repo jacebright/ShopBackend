@@ -4,6 +4,7 @@
 const router = require('express').Router();
 const cartCon = require('../controllers/cartController');
 const validation = require('../validation/cart');
+const { isAuthenticated } = require('../middleware/authenticate')
 
 //GET all carts
 router.get('/', cartCon.getAllCarts);
@@ -15,12 +16,12 @@ router.get('/:id', cartCon.getCartByUserId);
 // I have not implemented this yet.
 
 //POST cart
-router.post('/',validation, cartCon.createCart);
+router.post('/', isAuthenticated, validation, cartCon.createCart);
 
 //PUT cart
-router.put('/:id',validation, cartCon.editCart);
+router.put('/:id', isAuthenticated, validation, cartCon.editCart);
 
 //DELETE cart
-router.delete('/:id', cartCon.deleteCart);
+router.delete('/:id', isAuthenticated, cartCon.deleteCart);
 
 module.exports = router;
