@@ -25,13 +25,17 @@ app.use((err, req, res, next) => {
 });
 
 // Connect to MongoDB and start the server
-mongodb.connect((err) => {
-  if (err) {
-    console.error('Failed to connect to MongoDB:', err);
-    process.exit(1); // Exit the process if connection fails
-  } else {
-    app.listen(PORT, () => {
-      console.log(`Server listening on port ${PORT}! Connected to MongoDB.`);
-    });
-  }
-});
+if (process.env.NODE_ENV !== 'test') {
+  mongodb.connect((err) => {
+    if (err) {
+      console.error('Failed to connect to MongoDB:', err);
+      process.exit(1); // Exit the process if connection fails
+    } else {
+      app.listen(PORT, () => {
+        console.log(`Server listening on port ${PORT}! Connected to MongoDB.`);
+      });
+    }
+  });
+}
+
+module.exports  = app;

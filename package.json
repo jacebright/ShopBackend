@@ -18,7 +18,8 @@
     "start": "node server.js",
     "dev": "nodemon server.js",
     "build": "npm install && npm run swagger",
-    "swagger": "node swagger/swagger.js"
+    "swagger": "node swagger/swagger.js",
+    "test": "NODE_ENV=test jest --config ./config/jest.config.js --detectOpenHandles --forceExit"
   },
   "dependencies": {
     "body-parser": "^1.20.3",
@@ -36,7 +37,11 @@
     "validatorjs": "^3.22.1"
   },
   "devDependencies": {
-    "nodemon": "^3.1.0"
+    "@shelf/jest-mongodb": "^4.3.2",
+    "@types/jest": "^29.5.14",
+    "jest": "^29.7.0",
+    "nodemon": "^3.1.0",
+    "supertest": "^7.1.0"
   },
   "packageManager": "pnpm@9.15.3+sha512.1f79bc245a66eb0b07c5d4d83131240774642caaa86ef7d0434ab47c0d16f66b04e21e0c086eb61e62c77efc4d7f7ec071afad3796af64892fae66509173893a"
 }
