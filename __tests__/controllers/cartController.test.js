@@ -19,7 +19,7 @@ jest.mock('../../db/database', () => ({
 
 describe('Cart Controller', () => {
     describe('GET /cart', () => {
-        it('should return a status code of 200.', async () => {
+        it('should return an array of carts.', async () => {
             // Create mock items
             const mockCarts = [
                 { _id: '1', userId: '1', products: [], cartTotal: 0 },
