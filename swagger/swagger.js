@@ -26,9 +26,9 @@ const doc = {
       email: 'john.doe@example.com',
       favoriteColor: 'blue',
       accountType: 'premium',
-      dateCreated: '2025-04-07T12:00:00Z',
-      dateUpdated: '2025-04-07T12:00:00Z',
-      cartId: '12345',
+      dateCreated: '04/12/2025',
+      dateUpdated: '04/12/2025',
+      cartId: '67f98c74ca78ef6c68ed10cf',
     },
     UpdateUserExample: {
       firstName: 'Larry',
@@ -40,7 +40,7 @@ const doc = {
       productName: 'any',
     },
     NewProductExample: {
-      productId: '123',
+      productId: '67f98c74ca78ef6c68ed10cf',
       productPrice: 19.99,
       productName: 'Sample Product',
     },
@@ -56,12 +56,10 @@ const doc = {
     NewCartExample: {
       products: [
         {
-          productId: '123',
-          productPrice: 19.99,
-          productName: 'Sample Product',
+          productId: '67f98c74ca78ef6c68ed10cf',
         },
       ],
-      userId: 'user123',
+      userId: '67f98c74ca78ef6c68ed10cf',
       cartTotal: 59.97,
     },
     UpdateCartExample: {
@@ -74,12 +72,12 @@ const doc = {
       dateCreated: 'any',
     },
     NewOrderExample: {
-      cartId: 'cart123',
-      userId: 'user123',
-      dateCreated: '2025-04-07T12:00:00Z',
+      cartId: '67f98c74ca78ef6c68ed10cf',
+      userId: '67f98c74ca78ef6c68ed10cf',
+      dateCreated: '04/12/2025',
     },
     UpdateOrderExample: {
-      dateCreated: '2025-04-08T12:00:00Z',
+      dateCreated: '04/12/2025',
     },
     Orders: [{ $ref: '#/definitions/Order' }],
     NotFound: {

@@ -19,7 +19,7 @@
     "dev": "nodemon server.js",
     "build": "npm install && npm run swagger",
     "swagger": "node swagger/swagger.js",
-    "test": "NODE_ENV=test jest --config ./config/jest.config.js --detectOpenHandles --forceExit"
+    "test": "jest --config ./config/jest.config.js --detectOpenHandles --forceExit"
   },
   "dependencies": {
     "body-parser": "^1.20.3",
