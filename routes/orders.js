@@ -4,7 +4,7 @@
 const router = require('express').Router();
 const orderCon = require('../controllers/orderController');
 const validation = require('../validation/order');
-const { isAuthenticated } = require('../middleware/authenticate')
+const { isAuthenticated } = require('../middleware/authenticate');
 
 // order
 //GET all Orders

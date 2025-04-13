@@ -4,8 +4,7 @@
 const router = require('express').Router();
 const userCon = require('../controllers/userController');
 const validation = require('../validation/user');
-const { isAuthenticated } = require('../middleware/authenticate')
-
+const { isAuthenticated } = require('../middleware/authenticate');
 
 //GET all users
 router.get('/', userCon.getAllUsers);

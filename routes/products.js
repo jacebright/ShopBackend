@@ -4,8 +4,7 @@
 const router = require('express').Router();
 const userCon = require('../controllers/productController');
 const validation = require('../validation/Item');
-const { isAuthenticated } = require('../middleware/authenticate')
-
+const { isAuthenticated } = require('../middleware/authenticate');
 
 //GET inventory
 router.get('/', userCon.getInventory);

@@ -9,7 +9,7 @@ const collection_name = 'carts';
 
 //GET all carts
 const getAllCarts = async (req, res, next) => {
-    /*
+  /*
       #swagger.summary = 'Get All Carts'
       #swagger.descripton = 'Get all carts in the database'
       #swagger.responses[200] = {
@@ -38,7 +38,7 @@ const getAllCarts = async (req, res, next) => {
 //GET cart by ID
 //This will have to be changed later for individual user shopping Carts
 const getCartByUserId = async (req, res, next) => {
-    /*
+  /*
       #swagger.summary = 'Get Cart by Id'
       #swagger.description = 'Get a specific cart by the id of the cart'
       #swagger.parameters[id] = {
@@ -69,7 +69,7 @@ const getCartByUserId = async (req, res, next) => {
 
 //POST cart
 const createCart = async (req, res, next) => {
-    /*
+  /*
       #swagger.summary = 'Create Cart'
       #swagger.description = 'Create a new cart record in the database'
       #swagger.parameters[New Cart] = {
@@ -106,7 +106,7 @@ const createCart = async (req, res, next) => {
 
 //PUT cart by ID
 const editCart = async (req, res, next) => {
-    /*
+  /*
       #swagger.summary = 'Edit Cart'
       #swagger.description = 'Edit a cart by id'
       #swagger.parameters[id] = {
@@ -148,7 +148,7 @@ const editCart = async (req, res, next) => {
 
 //DELETE cart by ID
 const deleteCart = async (req, res, next) => {
-    /**
+  /**
       #swagger.summary = 'Delete Cart'
       #swagger.description = 'Delete cart by provided Id'
       #swagger.parameters[id] = {
