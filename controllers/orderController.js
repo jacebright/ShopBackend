@@ -10,7 +10,7 @@ const collection_name = 'orders';
 
 //GET all orders
 const getAllOrders = async (req, res, next) => {
-    /*
+  /*
       #swagger.summary = 'Get All Orders'
       #swagger.description = 'Get all orders in the database'
       #swagger.responses[200] = {
@@ -38,7 +38,7 @@ const getAllOrders = async (req, res, next) => {
 
 //GET order by ID
 const getOrderById = async (req, res, next) => {
-    /*
+  /*
       #swagger.summary = 'Get Order by Id'
       #swagger.description = 'Get specific order by id.'
       #swagger.parameters[id] = {
@@ -75,7 +75,7 @@ const getOrderById = async (req, res, next) => {
 // cartId for their specific cart and the product array within
 
 const createOrder = async (req, res, next) => {
-    /*
+  /*
       #swagger.summary = 'Create Order'
       #swagger.description = 'Create order that will be stored in the database'
       #swagger.parameters[New Order] = {

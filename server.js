@@ -17,26 +17,27 @@ const PORT = process.env.PORT || 3001;
 // Initializing and incorporating Passport for OAuth
 app
   .use(bodyParser.json())
-  .use(session({
-    secret: "secret",
-    resave: false ,
-    saveUninitialized: true ,
-  }))
+  .use(
+    session({
+      secret: 'secret',
+      resave: false,
+      saveUninitialized: true,
+    })
+  )
   .use(passport.initialize())
   .use(passport.session())
   .use((req, res, next) => {
-    res.setHeader("Access-Controll-Allow-Origin", "*");
+    res.setHeader('Access-Controll-Allow-Origin', '*');
     res.setHeader(
-      "Access-Control-Allow-Headers",
-      "Origin, X-Requested-With, Content-Type, Accept, Z-Key, Authorization"
+      'Access-Control-Allow-Headers',
+      'Origin, X-Requested-With, Content-Type, Accept, Z-Key, Authorization'
     );
     res.setHeader(
-      "Access-Control-Allow-Methods",
-      "POST, GET, PUT, PATCH, OPTIONS, DELETE"
+      'Access-Control-Allow-Methods',
+      'POST, GET, PUT, PATCH, OPTIONS, DELETE'
     );
     next();
-  })
-
+  });
 
 // Middleware
 app.use(cors()); // Enable Cross-Origin Resource Sharing
@@ -44,31 +45,45 @@ app.use(express.json()); // Parse JSON request bodies
 app.use(express.urlencoded({ extended: true })); // Parse URL-encoded request bodies
 
 // Passport middleware applied throughout
-passport.use(new GitHubStrategy({
-  clientID: process.env.GITHUB_CLIENT_ID,
-  clientSecret: process.env.GITHUB_CLIENT_SECRET,
-  callbackURL: process.env.CALLBACK_URL
-},
-function(accessToken, refreshToken, profile, done) {
-  return done(null, profile);
-}
-))
+passport.use(
+  new GitHubStrategy(
+    {
+      clientID: process.env.GITHUB_CLIENT_ID,
+      clientSecret: process.env.GITHUB_CLIENT_SECRET,
+      callbackURL: process.env.CALLBACK_URL,
+    },
+    function (accessToken, refreshToken, profile, done) {
+      return done(null, profile);
+    }
+  )
+);
 
 passport.serializeUser((user, done) => {
   done(null, user);
-})
+});
 passport.deserializeUser((user, done) => {
   done(null, user);
-})
+});
 
-app.get('/', (req, res) => { res.send(req.session.user !== undefined ? `Logged in as ${req.session.user.displayName}` : "Logged Out")})
+app.get('/', (req, res) => {
+  res.send(
+    req.session.user !== undefined
+      ? `Logged in as ${req.session.user.displayName}`
+      : 'Logged Out'
+  );
+});
 
-app.get('/github/callback', passport.authenticate('github', {
-  failureRedirect: '/api-docs', session: false}),
+app.get(
+  '/github/callback',
+  passport.authenticate('github', {
+    failureRedirect: '/api-docs',
+    session: false,
+  }),
   (req, res) => {
-  req.session.user = req.user;
-  res.redirect('/');
-})
+    req.session.user = req.user;
+    res.redirect('/');
+  }
+);
 
 // API Routes
 app.use(routes);
@@ -93,4 +108,4 @@ if (process.env.NODE_ENV !== 'test') {
   });
 }
 
-module.exports  = app;
+module.exports = app;

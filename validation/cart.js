@@ -3,7 +3,6 @@ const validate = require('validate.js');
 const validateCartInput = (req, res, next) => {
   // Define validation constraints
   const constraints = {
-
     products: {
       presence: true,
       type: 'array', // Ensures it's an array

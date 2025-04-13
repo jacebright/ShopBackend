@@ -6,9 +6,7 @@
     "version": "1.0.0"
   },
   "basePath": "/",
-  "schemes": [
-    null
-  ],
+  "schemes": [null],
   "paths": {
     "/logout": {
       "get": {
@@ -22,14 +20,10 @@
     },
     "/users/": {
       "get": {
-        "tags": [
-          "Users"
-        ],
+        "tags": ["Users"],
         "summary": "Get All Users",
         "description": "Get all users in the database",
-        "produces": [
-          "applications/json"
-        ],
+        "produces": ["applications/json"],
         "responses": {
           "200": {
             "description": "List of all users",
@@ -46,9 +40,7 @@
         }
       },
       "post": {
-        "tags": [
-          "Users"
-        ],
+        "tags": ["Users"],
         "summary": "Add User",
         "description": "Add user to the database.",
         "parameters": [
@@ -86,14 +78,10 @@
     },
     "/users/{id}": {
       "get": {
-        "tags": [
-          "Users"
-        ],
+        "tags": ["Users"],
         "summary": "Get User by Id",
         "description": "Get specific user by id.",
-        "produces": [
-          "applications/json"
-        ],
+        "produces": ["applications/json"],
         "parameters": [
           {
             "name": "id",
@@ -125,9 +113,7 @@
         }
       },
       "put": {
-        "tags": [
-          "Users"
-        ],
+        "tags": ["Users"],
         "summary": "Edit User",
         "description": "Edit specific user by Id",
         "parameters": [
@@ -170,9 +156,7 @@
         }
       },
       "delete": {
-        "tags": [
-          "Users"
-        ],
+        "tags": ["Users"],
         "summary": "Delete User",
         "description": "Delete user by Id",
         "parameters": [
@@ -208,14 +192,10 @@
     },
     "/product/": {
       "get": {
-        "tags": [
-          "Product"
-        ],
+        "tags": ["Product"],
         "summary": "Get All Products",
         "description": "Get all products in the database",
-        "produces": [
-          "applications/json"
-        ],
+        "produces": ["applications/json"],
         "responses": {
           "200": {
             "description": "List of all products",
@@ -232,9 +212,7 @@
         }
       },
       "post": {
-        "tags": [
-          "Product"
-        ],
+        "tags": ["Product"],
         "summary": "Add Product",
         "description": "Add product to the database.",
         "parameters": [
@@ -272,14 +250,10 @@
     },
     "/product/{id}": {
       "get": {
-        "tags": [
-          "Product"
-        ],
+        "tags": ["Product"],
         "summary": "Get Product by Id",
         "description": "Get specific product by id.",
-        "produces": [
-          "applications/json"
-        ],
+        "produces": ["applications/json"],
         "parameters": [
           {
             "name": "id",
@@ -311,9 +285,7 @@
         }
       },
       "put": {
-        "tags": [
-          "Product"
-        ],
+        "tags": ["Product"],
         "summary": "Edit Product",
         "description": "Edit specific product by Id",
         "parameters": [
@@ -356,9 +328,7 @@
         }
       },
       "delete": {
-        "tags": [
-          "Product"
-        ],
+        "tags": ["Product"],
         "summary": "Delete Product",
         "description": "Delete product by Id",
         "parameters": [
@@ -394,14 +364,10 @@
     },
     "/cart/": {
       "get": {
-        "tags": [
-          "Cart"
-        ],
+        "tags": ["Cart"],
         "summary": "Get All Carts",
         "description": "",
-        "produces": [
-          "applications/json"
-        ],
+        "produces": ["applications/json"],
         "responses": {
           "200": {
             "description": "List of all carts",
@@ -418,9 +384,7 @@
         }
       },
       "post": {
-        "tags": [
-          "Cart"
-        ],
+        "tags": ["Cart"],
         "summary": "Create Cart",
         "description": "Create a new cart record in the database",
         "parameters": [
@@ -458,14 +422,10 @@
     },
     "/cart/{id}": {
       "get": {
-        "tags": [
-          "Cart"
-        ],
+        "tags": ["Cart"],
         "summary": "Get Cart by Id",
         "description": "Get a specific cart by the id of the cart",
-        "produces": [
-          "applications/json"
-        ],
+        "produces": ["applications/json"],
         "parameters": [
           {
             "name": "id",
@@ -497,9 +457,7 @@
         }
       },
       "put": {
-        "tags": [
-          "Cart"
-        ],
+        "tags": ["Cart"],
         "summary": "Edit Cart",
         "description": "Edit a cart by id",
         "parameters": [
@@ -542,9 +500,7 @@
         }
       },
       "delete": {
-        "tags": [
-          "Cart"
-        ],
+        "tags": ["Cart"],
         "summary": "Delete Cart",
         "description": "Delete cart by provided Id",
         "parameters": [
@@ -580,14 +536,10 @@
     },
     "/order/": {
       "get": {
-        "tags": [
-          "Order"
-        ],
+        "tags": ["Order"],
         "summary": "Get All Orders",
         "description": "Get all orders in the database",
-        "produces": [
-          "applications/json"
-        ],
+        "produces": ["applications/json"],
         "responses": {
           "200": {
             "description": "List of all orders",
@@ -604,9 +556,7 @@
         }
       },
       "post": {
-        "tags": [
-          "Order"
-        ],
+        "tags": ["Order"],
         "summary": "Create Order",
         "description": "Create order that will be stored in the database",
         "parameters": [
@@ -644,14 +594,10 @@
     },
     "/order/{id}": {
       "get": {
-        "tags": [
-          "Order"
-        ],
+        "tags": ["Order"],
         "summary": "Get Order by Id",
         "description": "Get specific order by id.",
-        "produces": [
-          "applications/json"
-        ],
+        "produces": ["applications/json"],
         "parameters": [
           {
             "name": "id",
@@ -683,9 +629,7 @@
         }
       },
       "put": {
-        "tags": [
-          "Order"
-        ],
+        "tags": ["Order"],
         "summary": "Edit Order",
         "description": "Edit specific order by id",
         "parameters": [
@@ -731,9 +675,7 @@
         }
       },
       "delete": {
-        "tags": [
-          "Order"
-        ],
+        "tags": ["Order"],
         "summary": "Delete Order",
         "description": "Delete specific order",
         "parameters": [

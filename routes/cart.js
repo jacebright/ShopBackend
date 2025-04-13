@@ -4,7 +4,7 @@
 const router = require('express').Router();
 const cartCon = require('../controllers/cartController');
 const validation = require('../validation/cart');
-const { isAuthenticated } = require('../middleware/authenticate')
+const { isAuthenticated } = require('../middleware/authenticate');
 
 //GET all carts
 router.get('/', cartCon.getAllCarts);

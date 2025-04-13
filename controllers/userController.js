@@ -9,7 +9,7 @@ const collection_name = 'users';
 
 //GET all users
 const getAllUsers = async (req, res, next) => {
-    /*
+  /*
       #swagger.summary = 'Get All Users'
       #swagger.description = 'Get all users in the database'
       #swagger.responses[200] = {
@@ -71,7 +71,7 @@ const getUserById = async (req, res, next) => {
 
 //POST user
 const createUser = async (req, res, next) => {
-    /*
+  /*
         #swagger.summary = 'Add User'
         #swagger.description = 'Add user to the database.'
         #swagger.parameters[New User] = {
@@ -113,7 +113,7 @@ const createUser = async (req, res, next) => {
 
 //PUT user by ID
 const editUser = async (req, res, next) => {
-    /*
+  /*
         #swagger.summary = 'Edit User'
         #swagger.description = 'Edit specific user by Id'
         #swagger.parameters[id] = {
