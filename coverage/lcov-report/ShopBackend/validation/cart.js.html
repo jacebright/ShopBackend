@@ -23,9 +23,9 @@
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">9.8% </span>
+                <span class="strong">10.2% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>5/51</span>
+                <span class='fraction'>5/49</span>
             </div>
         
             
@@ -44,9 +44,9 @@
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">9.8% </span>
+                <span class="strong">10.2% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>5/51</span>
+                <span class='fraction'>5/49</span>
             </div>
         
             
@@ -112,13 +112,9 @@
 <a name='L47'></a><a href='#L47'>47</a>
 <a name='L48'></a><a href='#L48'>48</a>
 <a name='L49'></a><a href='#L49'>49</a>
-<a name='L50'></a><a href='#L50'>50</a>
-<a name='L51'></a><a href='#L51'>51</a>
-<a name='L52'></a><a href='#L52'>52</a></td><td class="line-coverage quiet"><span class="cline-any cline-yes">1x</span>
+<a name='L50'></a><a href='#L50'>50</a></td><td class="line-coverage quiet"><span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
@@ -174,16 +170,16 @@ const validateCartInput = <span class="fstat-no" title="function not covered" >(
 <span class="cstat-no" title="statement not covered" >      presence: true,</span>
 <span class="cstat-no" title="statement not covered" >      type: 'array', // Ensures it's an array</span>
 <span class="cstat-no" title="statement not covered" >      length: { minimum: 0 },</span>
-<span class="cstat-no" title="statement not covered" >      array: {</span>
-<span class="cstat-no" title="statement not covered" >        productId: {</span>
-<span class="cstat-no" title="statement not covered" >          presence: true,</span>
-<span class="cstat-no" title="statement not covered" >          type: 'string', // Ensures each productId is a string</span>
-<span class="cstat-no" title="statement not covered" >          format: {</span>
-<span class="cstat-no" title="statement not covered" >            pattern: /^[0-9a-fA-F]{24}$/, // MongoDB ObjectID pattern</span>
-<span class="cstat-no" title="statement not covered" >            message: 'must be a valid MongoDB ObjectID',</span>
-<span class="cstat-no" title="statement not covered" >          },</span>
-<span class="cstat-no" title="statement not covered" >        },</span>
-<span class="cstat-no" title="statement not covered" >      },</span>
+<span class="cstat-no" title="statement not covered" >      // array: {</span>
+<span class="cstat-no" title="statement not covered" >        // productId: {</span>
+<span class="cstat-no" title="statement not covered" >        //   presence: true,</span>
+<span class="cstat-no" title="statement not covered" >        //   type: 'string', // Ensures each productId is a string</span>
+<span class="cstat-no" title="statement not covered" >        //   format: {</span>
+<span class="cstat-no" title="statement not covered" >        //     pattern: /^[0-9a-fA-F]{24}$/, // MongoDB ObjectID pattern</span>
+<span class="cstat-no" title="statement not covered" >        //     message: 'must be a valid MongoDB ObjectID',</span>
+<span class="cstat-no" title="statement not covered" >        //   },</span>
+<span class="cstat-no" title="statement not covered" >        // },</span>
+<span class="cstat-no" title="statement not covered" >      // },</span>
 <span class="cstat-no" title="statement not covered" >    },</span>
 <span class="cstat-no" title="statement not covered" >    userId: {</span>
 <span class="cstat-no" title="statement not covered" >      type: 'string', // Optional field, ensure it's a string if provided</span>
@@ -191,13 +187,11 @@ const validateCartInput = <span class="fstat-no" title="function not covered" >(
 <span class="cstat-no" title="statement not covered" >        pattern: /^[0-9a-fA-F]{24}$/, // MongoDB ObjectID pattern</span>
 <span class="cstat-no" title="statement not covered" >        message: 'must be a valid MongoDB ObjectID',</span>
 <span class="cstat-no" title="statement not covered" >      },</span>
-<span class="cstat-no" title="statement not covered" >      allowNull: true, // Allows null values</span>
 <span class="cstat-no" title="statement not covered" >    },</span>
 <span class="cstat-no" title="statement not covered" >    cartTotal: {</span>
 <span class="cstat-no" title="statement not covered" >      numericality: {</span>
 <span class="cstat-no" title="statement not covered" >        greaterThanOrEqualTo: 0, // Must be 0 or greater if provided</span>
 <span class="cstat-no" title="statement not covered" >      },</span>
-<span class="cstat-no" title="statement not covered" >      allowNull: true, // Allows null values</span>
 <span class="cstat-no" title="statement not covered" >    },</span>
 <span class="cstat-no" title="statement not covered" >  };</span>
 <span class="cstat-no" title="statement not covered" ></span>
@@ -223,7 +217,7 @@ module.exports = validateCartInput;
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at 2025-04-13T02:10:56.367Z
+                at 2025-04-13T03:43:02.297Z
             </div>
         <script src="../../prettify.js"></script>
         <script>

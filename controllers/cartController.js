@@ -93,7 +93,7 @@ const createCart = async (req, res, next) => {
       .collection(collection_name)
       .insertOne(cart);
     if (response.acknowledged) {
-      res.status(201).json('User was Created');
+      res.status(201).json('Cart was Created');
     } else {
       res
         .status(500)
