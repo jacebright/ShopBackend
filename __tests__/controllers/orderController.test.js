@@ -41,4 +41,25 @@ describe('Order Controller', () => {
       expect(response.body.length > 1).toBeTruthy();
     });
   });
+
+    describe('GET /order/:id', () => {
+      it('should return a single object', async () => {
+        // Create mock object
+        const mockOrder = {
+          test: 'test',
+        };
+
+        // Mock FindeOne function.
+        const mockFindOne = mongodb.getDatabase().db().collection().findOne;
+        mockFindOne.mockReturnValueOnce(Promise.resolve(mockOrder));
+
+        const response = await request(app).get(
+          '/order/67f98ae1c8d60bfdac7e8c45'
+        );
+
+        expect(response.status).toBe(200);
+        expect(response.type).toBe('applications/json');
+        expect(Array.isArray(response.body)).toBeFalsy();
+      });
+    });
 });
