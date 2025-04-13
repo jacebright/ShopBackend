@@ -5,10 +5,9 @@
     "description": "API for CSE341 shop backend group project",
     "version": "1.0.0"
   },
+  "host": "localhost:8080",
   "basePath": "/",
-  "schemes": [
-    null
-  ],
+  "schemes": [null],
   "paths": {
     "/logout": {
       "get": {
