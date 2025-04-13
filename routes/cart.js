@@ -13,13 +13,13 @@ router.get('/', cartCon.getAllCarts);
 //GET cart by ID
 router.get('/:id', cartCon.getCartByUserId);
 // User id should be determined and used to call specific cart.
-// I have not implemented this yet.
+// I have not implemented this yet. isAuthenticated, 
 
 //POST cart
-router.post('/', isAuthenticated, validation, cartCon.createCart);
+router.post('/', validation, cartCon.createCart);
 
 //PUT cart
-router.put('/:id', isAuthenticated, validation, cartCon.editCart);
+router.put('/:id', validation, cartCon.editCart);
 
 //DELETE cart
 router.delete('/:id', isAuthenticated, cartCon.deleteCart);
