@@ -3,21 +3,30 @@
 const validate = require('validate.js');
 
 const validateProductInput = (req, res, next) => {
-  // Define validation constraints for a single product
-  const productConstraints = {
-    productName: {
+  // Define validation constraints
+  const constraints = {
+    productId: {
       presence: true,
-      type: 'string',
-      length: { minimum: 1 }, // At least one character
+      numericality: {
+        onlyInteger: true, // Ensures it's an integer
+        greaterThan: 0, // Must be positive
+      },
     },
     productPrice: {
       presence: true,
-      numericality: { greaterThan: 0 }, // Must be a positive number
+      numericality: {
+        greaterThan: 0, // Must be positive
+      },
+    },
+    productName: {
+      presence: true,
+      type: 'string', // Ensures it's a string
+      length: { minimum: 1 }, // At least one character
     },
   };
 
-  // Validate the product object in the request body
-  const validationErrors = validate(req.body, productConstraints);
+  // Validate request body
+  const validationErrors = validate(req.body, constraints);
 
   if (validationErrors) {
     // Respond with validation errors
@@ -27,7 +36,6 @@ const validateProductInput = (req, res, next) => {
     });
   }
 
-  // If validation passes, proceed to the next middleware/controller
   next();
 };
 

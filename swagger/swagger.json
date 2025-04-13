@@ -5,12 +5,21 @@
     "description": "API for CSE341 shop backend group project",
     "version": "1.0.0"
   },
-  "host": "localhost:8080",
   "basePath": "/",
   "schemes": [
-    "http"
+    null
   ],
   "paths": {
+    "/logout": {
+      "get": {
+        "description": "",
+        "responses": {
+          "default": {
+            "description": ""
+          }
+        }
+      }
+    },
     "/users/": {
       "get": {
         "tags": [
@@ -54,9 +63,6 @@
           }
         ],
         "responses": {
-          "200": {
-            "description": "OK"
-          },
           "201": {
             "description": "Created"
           },
@@ -66,8 +72,14 @@
             },
             "description": "Bad Request"
           },
+          "401": {
+            "description": "Unauthorized. Authentication required."
+          },
           "500": {
-            "description": "Internal Server Error"
+            "description": "Server Error",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
           }
         }
       }
@@ -146,8 +158,14 @@
             },
             "description": "Bad Request"
           },
+          "401": {
+            "description": "Unauthorized. Authentication required."
+          },
           "500": {
-            "description": "Internal Server Error"
+            "description": "Server Error",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
           }
         }
       },
@@ -167,9 +185,6 @@
           }
         ],
         "responses": {
-          "200": {
-            "description": "OK"
-          },
           "204": {
             "description": "Deleted item successfully."
           },
@@ -178,6 +193,9 @@
               "$ref": "#/definitions/Errors"
             },
             "description": "Bad Request"
+          },
+          "401": {
+            "description": "Unauthorized. Authentication required."
           },
           "500": {
             "description": "Server Error",
@@ -240,8 +258,14 @@
             },
             "description": "Bad Request"
           },
+          "401": {
+            "description": "Unauthorized. Authentication required."
+          },
           "500": {
-            "description": "Internal Server Error"
+            "description": "Server Error",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
           }
         }
       }
@@ -320,8 +344,14 @@
             },
             "description": "Bad Request"
           },
+          "401": {
+            "description": "Unauthorized. Authentication required."
+          },
           "500": {
-            "description": "Internal Server Error"
+            "description": "Server Error",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
           }
         }
       },
@@ -350,6 +380,9 @@
             },
             "description": "Bad Request"
           },
+          "401": {
+            "description": "Unauthorized. Authentication required."
+          },
           "500": {
             "description": "Server Error",
             "schema": {
@@ -366,7 +399,9 @@
         ],
         "summary": "Get All Carts",
         "description": "",
-        "produces": ["applications/json"],
+        "produces": [
+          "applications/json"
+        ],
         "responses": {
           "200": {
             "description": "List of all carts",
@@ -409,8 +444,14 @@
             },
             "description": "Bad Request"
           },
+          "401": {
+            "description": "Unauthorized. Authentication required."
+          },
           "500": {
-            "description": "Internal Server Error"
+            "description": "Server Error",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
           }
         }
       }
@@ -489,8 +530,14 @@
             },
             "description": "Bad Request"
           },
+          "401": {
+            "description": "Unauthorized. Authentication required."
+          },
           "500": {
-            "description": "Internal Server Error"
+            "description": "Server Error",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
           }
         }
       },
@@ -518,6 +565,9 @@
               "$ref": "#/definitions/Errors"
             },
             "description": "Bad Request"
+          },
+          "401": {
+            "description": "Unauthorized. Authentication required."
           },
           "500": {
             "description": "Server Error",
@@ -580,8 +630,14 @@
             },
             "description": "Bad Request"
           },
+          "401": {
+            "description": "Unauthorized. Authentication required."
+          },
           "500": {
-            "description": "Internal Server Error"
+            "description": "Server Error",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
           }
         }
       }
@@ -663,8 +719,14 @@
             },
             "description": "Bad Request"
           },
+          "401": {
+            "description": "Unauthorized. Authentication required."
+          },
           "500": {
-            "description": "Internal Server Error"
+            "description": "Server Error",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
           }
         }
       },
@@ -692,6 +754,9 @@
               "$ref": "#/definitions/Errors"
             },
             "description": "Bad Request"
+          },
+          "401": {
+            "description": "Unauthorized. Authentication required."
           },
           "500": {
             "description": "Server Error",
