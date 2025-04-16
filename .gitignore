@@ -2,3 +2,4 @@ pnpm-lock.yaml
 .env
 node_modules
 model.json
+coverage
