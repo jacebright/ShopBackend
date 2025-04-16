@@ -133,6 +133,7 @@ const editProduct = async (req, res, next) => {
     const product = {
       productName: req.body.productName,
       productInventory: req.body.productInventory,
+      productPrice: req.body.productPrice,
       //change any fields if needed.
     };
     const response = await mongodb
